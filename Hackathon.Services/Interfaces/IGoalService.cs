@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Hackathon.Services.Interfaces
 {
-    public interface ILoginService
+    public interface IGoalService
     {
-        User Login(string userName);
+        User Goal(string userName);
     }
 }

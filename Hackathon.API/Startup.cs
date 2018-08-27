@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hackathon.Repositories.Interfaces;
 using Hackathon.Services;
 using Hackathon.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;

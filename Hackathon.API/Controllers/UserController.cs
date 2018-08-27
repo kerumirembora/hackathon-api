@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Hackathon.Model;
 using Hackathon.Services.Interfaces;
-using Hackathon.Services.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackathon.API.Controllers
@@ -23,7 +19,12 @@ namespace Hackathon.API.Controllers
         [HttpPost]
         public ActionResult<User> Post([FromBody] string userName)
         {
-            return _loginService.Login(userName);
+            User user = _loginService.Login(userName);
+            if (user == null)
+                return NotFound();
+            else
+                return user;
+
         }
 
     }

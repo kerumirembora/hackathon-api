@@ -1,19 +1,17 @@
-﻿using Hackathon.Services.Interfaces;
-using Hackathon.Services.Model;
-using System;
+﻿using Hackathon.Model;
+using Hackathon.Repositories.Interfaces;
+using Hackathon.Repositories.InMemory;
+using Hackathon.Services.Interfaces;
 
 namespace Hackathon.Services
 {
     public class LoginService : ILoginService
     {
+        IUserRepository _userRepository = new InMemoryUserRepository();
+
         public User Login(string userName)
         {
-            return new User
-            {
-                Age = 34,
-                Name = "Jimbras",
-                UserName = "The Jimbras"
-            };
+            return _userRepository.Get(userName);
         }
     }
 }
