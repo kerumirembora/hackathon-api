@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.API", "Hackathon.API\Hackathon.API.csproj", "{EFA4CBF8-A90E-420F-8904-5C0FBBFE3DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.API", "Hackathon.API\Hackathon.API.csproj", "{EFA4CBF8-A90E-420F-8904-5C0FBBFE3DE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Services", "Hackathon.Services\Hackathon.Services.csproj", "{8257B7C9-1F39-4604-8357-6F66C64B00E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Services", "Hackathon.Services\Hackathon.Services.csproj", "{8257B7C9-1F39-4604-8357-6F66C64B00E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,13 +1,19 @@
 ﻿using Hackathon.Services.Interfaces;
+using Hackathon.Services.Model;
 using System;
 
 namespace Hackathon.Services
 {
     public class LoginService : ILoginService
     {
-        public bool Login(string userName, string userPassword)
+        public User Login(string userName)
         {
-            return true;
+            return new User
+            {
+                Age = 34,
+                Name = "Jimbras",
+                UserName = "The Jimbras"
+            };
         }
     }
 }
