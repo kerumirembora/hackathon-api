@@ -57,7 +57,7 @@ namespace Hackathon.API
             {
                 app.UseHsts();
             }
-          
+            app.UseCors("allowAll");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
