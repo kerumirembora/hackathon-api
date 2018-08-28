@@ -37,7 +37,8 @@ namespace Hackathon.API
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowAnyHeader();
+                       .AllowAnyHeader()
+                       .AllowCredentials();
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -57,6 +58,7 @@ namespace Hackathon.API
             {
                 app.UseHsts();
             }
+            
             app.UseCors("allowAll");
             app.UseHttpsRedirection();
             app.UseMvc();
