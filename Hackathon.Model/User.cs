@@ -2,7 +2,7 @@
 
 namespace Hackathon.Model
 {
-    public class User
+    public class User : IEntity
     {
         public int Id { get; set; }
         public int Age { get; set; }

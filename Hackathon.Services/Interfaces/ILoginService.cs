@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Hackathon.Services.Interfaces
 {
     public interface ILoginService
     {
-        User Login(string userName);
+        Task<User> Login(string userName);
     }
 }

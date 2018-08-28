@@ -1,10 +1,10 @@
 ﻿using Hackathon.Model;
+using System.Threading.Tasks;
 
 namespace Hackathon.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
-        User Get(int id);
-        User Get(string userName);
+        Task<User> GetByUserName(string userName);
     }
 }

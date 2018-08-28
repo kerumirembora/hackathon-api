@@ -1,17 +1,23 @@
 ﻿using Hackathon.Model;
 using Hackathon.Repositories.Interfaces;
-using Hackathon.Repositories.InMemory;
+using Hackathon.Repositories.SQLLite;
 using Hackathon.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace Hackathon.Services
 {
     public class LoginService : ILoginService
     {
-        IUserRepository _userRepository = new InMemoryUserRepository();
+        IUserRepository _userRepository;
 
-        public User Login(string userName)
+        public LoginService(IUserRepository userRepository)
         {
-            return _userRepository.Get(userName);
+            _userRepository = userRepository;
+        }
+
+        public async Task<User> Login(string userName)
+        {
+            return await _userRepository.GetByUserName(userName);
         }
     }
 }
