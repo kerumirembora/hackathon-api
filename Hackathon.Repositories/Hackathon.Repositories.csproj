@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Hackathon.Model\Hackathon.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

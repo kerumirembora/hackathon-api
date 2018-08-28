@@ -29,7 +29,8 @@ namespace Hackathon.Repositories.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Age = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -44,6 +45,7 @@ namespace Hackathon.Repositories.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     Amount = table.Column<int>(nullable: false),
+                    Unit = table.Column<string>(nullable: true),
                     DeadlineDate = table.Column<DateTime>(nullable: false),
                     AdministrationUserId = table.Column<int>(nullable: false),
                     GoalTypeId = table.Column<int>(nullable: false)
@@ -112,6 +114,41 @@ namespace Hackathon.Repositories.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "GoalTypes",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[] { 1, "Stop spending so much time on social media", "Social Media" });
+
+            migrationBuilder.InsertData(
+                table: "GoalTypes",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[] { 2, "Stop cursing", "Curse Jar" });
+
+            migrationBuilder.InsertData(
+                table: "GoalTypes",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[] { 3, "Save for a trip", "Trip" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Age", "Email", "Name", "UserName" },
+                values: new object[] { 1, 32, "johndoe@gmail.com", "John Doe", "JohnDoe" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Age", "Email", "Name", "UserName" },
+                values: new object[] { 2, 45, "annadoe@outlook.com", "Anna Doe", "AnnaDoe" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Age", "Email", "Name", "UserName" },
+                values: new object[] { 3, 28, "jimmy@gmail.com", "Jimmy Chamberlin", "Jimmy" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Age", "Email", "Name", "UserName" },
+                values: new object[] { 5, 55, "dominic@yahoo.com", "Dominic Howard", "Dominic" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_GoalSubscriberId",

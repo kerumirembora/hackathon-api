@@ -1,8 +1,5 @@
 ﻿using Hackathon.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hackathon.Repositories.SQLLite
 {
@@ -28,7 +25,7 @@ namespace Hackathon.Repositories.SQLLite
         {
             base.OnModelCreating(builder);
             DataSeeder.SeedUsers(builder);
-            
+            DataSeeder.SeedGoalTypes(builder);
         }
     }
 }

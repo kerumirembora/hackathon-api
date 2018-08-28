@@ -66,6 +66,12 @@ namespace Hackathon.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GoalTypes");
+
+                    b.HasData(
+                        new { Id = 1, Description = "Stop spending so much time on social media", Name = "Social Media" },
+                        new { Id = 2, Description = "Stop cursing", Name = "Curse Jar" },
+                        new { Id = 3, Description = "Save for a trip", Name = "Trip" }
+                    );
                 });
 
             modelBuilder.Entity("Hackathon.Model.User", b =>
@@ -75,6 +81,8 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<int>("Age");
 
+                    b.Property<string>("Email");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("UserName");
@@ -82,6 +90,13 @@ namespace Hackathon.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new { Id = 1, Age = 32, Email = "johndoe@gmail.com", Name = "John Doe", UserName = "JohnDoe" },
+                        new { Id = 2, Age = 45, Email = "annadoe@outlook.com", Name = "Anna Doe", UserName = "AnnaDoe" },
+                        new { Id = 3, Age = 28, Email = "jimmy@gmail.com", Name = "Jimmy Chamberlin", UserName = "Jimmy" },
+                        new { Id = 5, Age = 55, Email = "dominic@yahoo.com", Name = "Dominic Howard", UserName = "Dominic" }
+                    );
                 });
 
             modelBuilder.Entity("Hackathon.Model.UserGoal", b =>
@@ -98,6 +113,8 @@ namespace Hackathon.Repositories.Migrations
                     b.Property<int>("GoalTypeId");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Unit");
 
                     b.HasKey("Id");
 

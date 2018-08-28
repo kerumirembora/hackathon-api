@@ -32,6 +32,7 @@ namespace Hackathon.API
         {
             services.AddDbContext<SQLLiteContext>(options => 
                 options.UseSqlite(Configuration.GetConnectionString("HackathonDatabase")));
+            services.AddCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<ILoginService, LoginService>();
@@ -50,7 +51,7 @@ namespace Hackathon.API
             {
                 app.UseHsts();
             }
-
+           // app.UseCors(builder => builder.WithOrigins("*"));
             app.UseHttpsRedirection();
             app.UseMvc();
         }
