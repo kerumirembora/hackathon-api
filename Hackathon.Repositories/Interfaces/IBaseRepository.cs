@@ -11,7 +11,7 @@ namespace Hackathon.Repositories.Interfaces
     {
         IQueryable<TEntity> GetAll();
         Task<TEntity> Get(int id);
-        Task Create(TEntity entity);
+        Task<int> Create(TEntity entity);
         Task Update(int id, TEntity entity);
         Task Delete(int id);
     }

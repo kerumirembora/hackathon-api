@@ -56,6 +56,9 @@ namespace Hackathon.API
             services.AddTransient<IUserRepository, SQLLiteUserRepository>();
             services.AddTransient<IGoalTypeRepository, SQLLiteGoalTypeRepository>();
             services.AddTransient<INotificationRepository, SQLLiteNotificationRepository>();
+            services.AddTransient<IUserGoalRepository, SQLLiteUserGoalRepository>();
+            services.AddTransient<IEventRepository, SQLLiteEventRepository>();
+            services.AddTransient<IGoalSubscriberRepository, SQLLiteGoalSubscriberRepository>();
 
         }
 

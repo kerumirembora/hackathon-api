@@ -17,6 +17,13 @@
             <param name="input">User Name</param>
             <returns>User info and subscribed goals</returns>
         </member>
+        <member name="M:Hackathon.API.Controllers.UserController.CreateUserGoal(Hackathon.API.DataTransferObjects.CreateUserGoalInputDto)">
+            <summary>
+            Creates a User Goal
+            </summary>
+            <param name="input">Data needed to commit the request</param>
+            <returns>User info and subscribed goals</returns>
+        </member>
         <member name="M:Hackathon.API.Controllers.UserController.GetUserNotifications(System.Int32)">
             <summary>
             Get user notifications

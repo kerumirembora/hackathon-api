@@ -37,6 +37,19 @@ namespace Hackathon.API.Controllers
         }
 
         /// <summary>
+        /// Creates a User Goal
+        /// </summary>
+        /// <param name="input">Data needed to commit the request</param>
+        /// <returns>User info and subscribed goals</returns>
+        [HttpPost("{userId}/usergoal")]
+        public async Task<ActionResult<CreateUserGoalOutputDto>> CreateUserGoal([FromBody] CreateUserGoalInputDto input)
+        {
+            int userGoalId = await _userService.CreateUserGoal(input.UserId, input.Name, input.Amount, input.Unit, input.DeadlineDate, input.GoalTypeId);
+
+            return new CreateUserGoalOutputDto { UserGoalId = userGoalId };
+        }
+
+        /// <summary>
         /// Get user notifications
         /// </summary>
         /// <param name="userId">User Id</param>
