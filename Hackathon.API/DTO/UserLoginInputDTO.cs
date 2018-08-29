@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hackathon.API.DTO
 {
-    public class UserLoginInputDTO
+    public class UserLoginInputDto
     {
         public string UserName { get; set; }
     }

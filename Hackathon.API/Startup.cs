@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Hackathon.Repositories.Interfaces;
+﻿using Hackathon.Repositories.Interfaces;
 using Hackathon.Repositories.SQLLite;
 using Hackathon.Services;
 using Hackathon.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Hackathon.API
 {
@@ -43,7 +36,9 @@ namespace Hackathon.API
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IGoalService, GoalService>();
             services.AddTransient<IUserRepository, SQLLiteUserRepository>();
+            services.AddTransient<IGoalTypeRepository, SQLLiteGoalTypeRepository>();
 
         }
 

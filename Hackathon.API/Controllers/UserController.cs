@@ -17,9 +17,8 @@ namespace Hackathon.API.Controllers
             _loginService = loginService;
         }
 
-        // POST api/values
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] UserLoginInputDTO input)
+        public async Task<ActionResult<User>> Post([FromBody] UserLoginInputDto input)
         {
             User user = await _loginService.Login(input.UserName);
             if (user == null)
