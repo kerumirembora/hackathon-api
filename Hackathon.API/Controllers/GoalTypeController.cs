@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hackathon.API.DataTransferObjects;
+using Hackathon.API.Mappers;
 using Hackathon.Model;
 using Hackathon.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -25,9 +27,9 @@ namespace Hackathon.API.Controllers
         /// </summary>
         /// <returns>List of Goal Types</returns>
         [HttpGet]
-        public IEnumerable<GoalType> Get()
+        public ActionResult<GetAllGoalTypesOutputDto> Get()
         {
-            return  _goalService.GetGoalTypes();
+            return  _goalService.GetGoalTypes().ToGetAllGoalTypesOutputDto();
         }
 
     }

@@ -15,6 +15,11 @@ namespace Hackathon.Services
             _goalTypeRepository = goalTypeRepository;
         }
 
+        public bool CreateUserGoal()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<GoalType> GetGoalTypes()
         {
             return _goalTypeRepository.GetAll().ToList();

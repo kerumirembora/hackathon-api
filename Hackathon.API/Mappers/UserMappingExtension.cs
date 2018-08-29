@@ -9,34 +9,34 @@ namespace Hackathon.API.Mappers
         public static UserLoginOutputDto ToUserLoginOutputDto(this User user)
         {
             UserLoginOutputDto output = new UserLoginOutputDto {
-                id = user.Id,
-                userName = user.UserName
+                Id = user.Id,
+                UserName = user.UserName
             };
 
             foreach (var subscribedGoal in user.SubscribedGoals)
             {
                 UserLoginGoalOutputDto goal =  new UserLoginGoalOutputDto {
-                    name = subscribedGoal.UserGoal.GoalType.Name,
-                    deadline = subscribedGoal.UserGoal.DeadlineDate,
-                    goalTypeId = subscribedGoal.UserGoal.GoalTypeId,
-                    goalId = subscribedGoal.UserGoal.Id
+                    Name = subscribedGoal.UserGoal.GoalType.Name,
+                    Deadline = subscribedGoal.UserGoal.DeadlineDate,
+                    GoalTypeId = subscribedGoal.UserGoal.GoalTypeId,
+                    GoalId = subscribedGoal.UserGoal.Id
                 };
 
-                goal.metrics.Add(new UserLoginMetricOutputDto {
-                    description = subscribedGoal.UserGoal.GoalType.MetricDescription,
-                    amount = subscribedGoal.CompletedAmount,
-                    limit = subscribedGoal.UserGoal.Amount,
-                    unit = subscribedGoal.UserGoal.Unit
+                goal.Metrics.Add(new UserLoginMetricOutputDto {
+                    Description = subscribedGoal.UserGoal.GoalType.MetricDescription,
+                    Amount = subscribedGoal.CompletedAmount,
+                    Limit = subscribedGoal.UserGoal.Amount,
+                    Unit = subscribedGoal.UserGoal.Unit
                 });
 
-                goal.metrics.Add(new UserLoginMetricOutputDto
+                goal.Metrics.Add(new UserLoginMetricOutputDto
                 {
-                    description = "Amount saved",
-                    amount = subscribedGoal.MoneyAmountSaved,
-                    unit = "NOK"
+                    Description = "Amount saved",
+                    Amount = subscribedGoal.MoneyAmountSaved,
+                    Unit = "NOK"
                 });
 
-                output.goals.Add(goal);
+                output.Goals.Add(goal);
             }
 
             return output;

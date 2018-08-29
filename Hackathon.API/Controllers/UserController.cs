@@ -42,9 +42,9 @@ namespace Hackathon.API.Controllers
         /// <param name="userId">User Id</param>
         /// <returns>List of user notifications</returns>
         [HttpGet("{userId}/notification", Name = "GetUserNotifications")]
-        public IEnumerable<Notification> GetUserNotifications(int userId)
+        public ActionResult<GetUserNotificationsOutputDto> GetUserNotifications(int userId)
         {
-            return _userService.GetNotifications(userId);
+            return _userService.GetNotifications(userId).ToGetUserNotificationsOutputDto();
         }
 
 

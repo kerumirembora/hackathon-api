@@ -5,35 +5,35 @@ namespace Hackathon.API.DataTransferObjects
 {
     public class UserLoginOutputDto
     {
-        public int id { get; set; }
-        public string userName { get; set; }
-        public List<UserLoginGoalOutputDto> goals { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public List<UserLoginGoalOutputDto> Goals { get; set; }
 
         public UserLoginOutputDto()
         {
-            goals = new List<UserLoginGoalOutputDto>();
+            Goals = new List<UserLoginGoalOutputDto>();
         }
     }
 
     public class UserLoginGoalOutputDto
     {
-        public int goalTypeId { get; set; }
-        public int goalId { get; set; }
-        public string name { get; set; }
-        public DateTime deadline  { get; set; }
-        public List<UserLoginMetricOutputDto> metrics { get; set; }
+        public int GoalTypeId { get; set; }
+        public int GoalId { get; set; }
+        public string Name { get; set; }
+        public DateTime Deadline  { get; set; }
+        public List<UserLoginMetricOutputDto> Metrics { get; set; }
 
         public UserLoginGoalOutputDto()
         {
-            metrics = new List<UserLoginMetricOutputDto>();
+            Metrics = new List<UserLoginMetricOutputDto>();
         }
     }
 
     public class UserLoginMetricOutputDto
     {
-        public string description { get; set; }
-        public string unit { get; set; }
-        public int amount { get; set; }
-        public int limit { get; set; }
+        public string Description { get; set; }
+        public string Unit { get; set; }
+        public int Amount { get; set; }
+        public int Limit { get; set; }
     }
 }
