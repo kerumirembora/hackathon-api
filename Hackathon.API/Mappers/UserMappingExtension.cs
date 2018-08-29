@@ -18,7 +18,8 @@ namespace Hackathon.API.Mappers
                 UserLoginGoalOutputDto goal =  new UserLoginGoalOutputDto {
                     name = subscribedGoal.UserGoal.GoalType.Name,
                     deadline = subscribedGoal.UserGoal.DeadlineDate,
-                    id = subscribedGoal.UserGoal.GoalTypeId,
+                    goalTypeId = subscribedGoal.UserGoal.GoalTypeId,
+                    goalId = subscribedGoal.UserGoal.Id
                 };
 
                 goal.metrics.Add(new UserLoginMetricOutputDto {

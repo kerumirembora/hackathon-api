@@ -17,7 +17,8 @@ namespace Hackathon.API.DataTransferObjects
 
     public class UserLoginGoalOutputDto
     {
-        public int id { get; set; }
+        public int goalTypeId { get; set; }
+        public int goalId { get; set; }
         public string name { get; set; }
         public DateTime deadline  { get; set; }
         public List<UserLoginMetricOutputDto> metrics { get; set; }
