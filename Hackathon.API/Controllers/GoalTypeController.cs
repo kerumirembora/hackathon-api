@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hackathon.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/goaltype")]
     [ApiController]
     public class GoalTypeController : ControllerBase
     {

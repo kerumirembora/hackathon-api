@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hackathon.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -27,6 +27,14 @@ namespace Hackathon.API.Controllers
                 return user;
 
         }
+
+        // GET: api/Default/5
+        [HttpGet("{id}/usergoal", Name = "GetUserGoals")]
+        public string GetUserGoals(int id)
+        {
+            return "value";
+        }
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hackathon.Repositories.Interfaces;
+﻿using Swashbuckle.AspNetCore.Swagger;
+using Hackathon.Repositories.Interfaces;
 using Hackathon.Repositories.SQLLite;
 using Hackathon.Services;
 using Hackathon.Services.Interfaces;
@@ -35,6 +36,14 @@ namespace Hackathon.API
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "STracker API", Version = "v1" });
+            });
+
+            //Denpendcy Injection
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IGoalService, GoalService>();
             services.AddTransient<IUserRepository, SQLLiteUserRepository>();
@@ -56,6 +65,18 @@ namespace Hackathon.API
             
             app.UseCors("allowAll");
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseMvc();
         }
     }
