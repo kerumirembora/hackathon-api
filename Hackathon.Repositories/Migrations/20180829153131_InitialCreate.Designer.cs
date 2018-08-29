@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon.Repositories.Migrations
 {
     [DbContext(typeof(SQLLiteContext))]
-    [Migration("20180829131905_InitialCreate")]
+    [Migration("20180829153131_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,8 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("MetricDescription");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -78,9 +80,9 @@ namespace Hackathon.Repositories.Migrations
                     b.ToTable("GoalTypes");
 
                     b.HasData(
-                        new { Id = 1, Description = "Stop spending so much time on social media", Name = "Social Media" },
-                        new { Id = 2, Description = "Stop cursing", Name = "Curse Jar" },
-                        new { Id = 3, Description = "Save for a trip", Name = "Trip" }
+                        new { Id = 1, Description = "Stop spending so much time on Facebook", MetricDescription = "Time spent on Facebook", Name = "Facebook" },
+                        new { Id = 2, Description = "Stop cursing", MetricDescription = "Curses said", Name = "Curse Jar" },
+                        new { Id = 3, Description = "Save for a trip", MetricDescription = "Money saved", Name = "Trip" }
                     );
                 });
 
@@ -95,13 +97,23 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<string>("Message");
 
+                    b.Property<int?>("UserGoalId");
+
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserGoalId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Notifications");
+
+                    b.HasData(
+                        new { Id = 1, CreationDate = new DateTime(2018, 8, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Message = "You just got invited to do stuff", UserId = 1 },
+                        new { Id = 2, CreationDate = new DateTime(2018, 8, 26, 11, 52, 12, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Message = "Yesterday you were online on Facebook for 30 minutes. You can do better!!!!", UserGoalId = 1, UserId = 1 },
+                        new { Id = 3, CreationDate = new DateTime(2018, 8, 27, 17, 2, 12, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Message = "Yesterday you cursed 45 times. Wash your mounth with soap bitch!!", UserGoalId = 2, UserId = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Hackathon.Model.User", b =>
@@ -183,6 +195,10 @@ namespace Hackathon.Repositories.Migrations
 
             modelBuilder.Entity("Hackathon.Model.Notification", b =>
                 {
+                    b.HasOne("Hackathon.Model.UserGoal", "UserGoal")
+                        .WithMany()
+                        .HasForeignKey("UserGoalId");
+
                     b.HasOne("Hackathon.Model.User", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")

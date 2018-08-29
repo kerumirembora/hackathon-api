@@ -23,7 +23,7 @@ namespace Hackathon.Repositories
             builder.Entity<GoalType>().HasData(
                 new GoalType { Id = 1, Name = "Facebook", Description = "Stop spending so much time on Facebook", MetricDescription = "Time spent on Facebook" },
                 new GoalType { Id = 2, Name = "Curse Jar", Description = "Stop cursing", MetricDescription = "Curses said" },
-                new GoalType { Id = 3, Name = "Trip", Description = "Save for a trip" , MetricDescription = "Money saved" }
+                new GoalType { Id = 3, Name = "Trip", Description = "Save for a trip", MetricDescription = "Money saved" }
             );
         }
 
@@ -88,6 +88,41 @@ namespace Hackathon.Repositories
                     UserGoalId = 2
                 });
 
+        }
+
+        public static void SeedNotifications(ModelBuilder builder)
+        {
+            builder.Entity<Notification>().HasData(
+                new Notification
+                {
+                    Id = 1,
+                    CreationDate = new DateTime(2018, 8, 29, 12, 12, 12),
+                    ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12),
+                    Message = "You just got invited to do stuff",
+                    UserId = 1
+                });
+
+            builder.Entity<Notification>().HasData(
+               new Notification
+               {
+                   Id = 2,
+                   CreationDate = new DateTime(2018, 8, 26, 11, 52, 12),
+                   ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12),
+                   Message = "Yesterday you were online on Facebook for 30 minutes. You can do better!!!!",
+                   UserId = 1,
+                   UserGoalId = 1
+               });
+
+            builder.Entity<Notification>().HasData(
+              new Notification
+              {
+                  Id = 3,
+                  CreationDate = new DateTime(2018, 8, 27, 17, 2, 12),
+                  ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12),
+                  Message = "Yesterday you cursed 45 times. Wash your mounth with soap bitch!!",
+                  UserId = 1,
+                  UserGoalId = 2
+              });
         }
     }
 }

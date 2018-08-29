@@ -95,13 +95,23 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<string>("Message");
 
+                    b.Property<int?>("UserGoalId");
+
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserGoalId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Notifications");
+
+                    b.HasData(
+                        new { Id = 1, CreationDate = new DateTime(2018, 8, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Message = "You just got invited to do stuff", UserId = 1 },
+                        new { Id = 2, CreationDate = new DateTime(2018, 8, 26, 11, 52, 12, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Message = "Yesterday you were online on Facebook for 30 minutes. You can do better!!!!", UserGoalId = 1, UserId = 1 },
+                        new { Id = 3, CreationDate = new DateTime(2018, 8, 27, 17, 2, 12, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Message = "Yesterday you cursed 45 times. Wash your mounth with soap bitch!!", UserGoalId = 2, UserId = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Hackathon.Model.User", b =>
@@ -183,6 +193,10 @@ namespace Hackathon.Repositories.Migrations
 
             modelBuilder.Entity("Hackathon.Model.Notification", b =>
                 {
+                    b.HasOne("Hackathon.Model.UserGoal", "UserGoal")
+                        .WithMany()
+                        .HasForeignKey("UserGoalId");
+
                     b.HasOne("Hackathon.Model.User", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")

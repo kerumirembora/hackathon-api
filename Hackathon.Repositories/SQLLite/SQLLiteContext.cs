@@ -20,6 +20,7 @@ namespace Hackathon.Repositories.SQLLite
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=hackathon.db");
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -29,6 +30,7 @@ namespace Hackathon.Repositories.SQLLite
             DataSeeder.SeedGoalTypes(builder);
             DataSeeder.SeedUserGoals(builder);
             DataSeeder.SeedGoalSubscribers(builder);
+            DataSeeder.SeedNotifications(builder);
         }
     }
 }

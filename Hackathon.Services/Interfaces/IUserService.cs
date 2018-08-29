@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hackathon.Services.Interfaces
 {
-    public interface ILoginService
+    public interface IUserService
     {
         Task<User> Login(string userName);
+        List<Notification> GetNotifications(int userId);
+
     }
 }

@@ -3,6 +3,7 @@ using Hackathon.API.Mappers;
 using Hackathon.Model;
 using Hackathon.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Hackathon.API.Controllers
@@ -11,17 +12,17 @@ namespace Hackathon.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ILoginService _loginService;
+        private readonly IUserService _userService;
 
-        public UserController(ILoginService loginService)
+        public UserController(IUserService userService)
         {
-            _loginService = loginService;
+            _userService = userService;
         }
 
         [HttpPost]
         public async Task<ActionResult<UserLoginOutputDto>> Post([FromBody] UserLoginInputDto input)
         {
-            User user = await _loginService.Login(input.UserName);
+            User user = await _userService.Login(input.UserName);
 
             if (user == null)
                 return NotFound();
@@ -30,11 +31,10 @@ namespace Hackathon.API.Controllers
 
         }
 
-        // GET: api/Default/5
-        [HttpGet("{id}/usergoal", Name = "GetUserGoals")]
-        public string GetUserGoals(int id)
+        [HttpGet("{userId}/notification", Name = "GetUserNotifications")]
+        public IEnumerable<Notification> GetUserNotifications(int userId)
         {
-            return "value";
+            return _userService.GetNotifications(userId);
         }
 
 

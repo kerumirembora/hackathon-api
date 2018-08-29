@@ -44,7 +44,7 @@ namespace Hackathon.API
             });
 
             //Denpendcy Injection
-            services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IGoalService, GoalService>();
             services.AddTransient<IUserRepository, SQLLiteUserRepository>();
             services.AddTransient<IGoalTypeRepository, SQLLiteGoalTypeRepository>();

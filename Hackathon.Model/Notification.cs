@@ -13,5 +13,7 @@ namespace Hackathon.Model
         public DateTime ExpirationDate { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        public UserGoal UserGoal { get; set; }
+        public int? UserGoalId { get; set; }
     }
 }
