@@ -19,6 +19,11 @@ namespace Hackathon.API.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Fake Login/Authentication 
+        /// </summary>
+        /// <param name="input">User Name</param>
+        /// <returns>User info and subscribed goals</returns>
         [HttpPost]
         public async Task<ActionResult<UserLoginOutputDto>> Post([FromBody] UserLoginInputDto input)
         {
@@ -31,6 +36,11 @@ namespace Hackathon.API.Controllers
 
         }
 
+        /// <summary>
+        /// Get user notifications
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <returns>List of user notifications</returns>
         [HttpGet("{userId}/notification", Name = "GetUserNotifications")]
         public IEnumerable<Notification> GetUserNotifications(int userId)
         {

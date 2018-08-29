@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hackathon.API</name>
+    </assembly>
+    <members>
+        <member name="M:Hackathon.API.Controllers.GoalTypeController.Get">
+            <summary>
+            Gets a list of all available Goal Types a user can create/subscribe
+            </summary>
+            <returns>List of Goal Types</returns>
+        </member>
+        <member name="M:Hackathon.API.Controllers.UserController.Post(Hackathon.API.DataTransferObjects.UserLoginInputDto)">
+            <summary>
+            Fake Login/Authentication 
+            </summary>
+            <param name="input">User Name</param>
+            <returns>User info and subscribed goals</returns>
+        </member>
+        <member name="M:Hackathon.API.Controllers.UserController.GetUserNotifications(System.Int32)">
+            <summary>
+            Get user notifications
+            </summary>
+            <param name="userId">User Id</param>
+            <returns>List of user notifications</returns>
+        </member>
+    </members>
+</doc>

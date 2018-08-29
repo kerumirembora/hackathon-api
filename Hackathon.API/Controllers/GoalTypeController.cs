@@ -20,6 +20,10 @@ namespace Hackathon.API.Controllers
             _goalService = goalService;
         }
 
+        /// <summary>
+        /// Gets a list of all available Goal Types a user can create/subscribe
+        /// </summary>
+        /// <returns>List of Goal Types</returns>
         [HttpGet]
         public IEnumerable<GoalType> Get()
         {
