@@ -15,6 +15,12 @@ namespace Hackathon.Repositories.SQLLite
         public async Task<User> GetByUserName(string userName)
         {
             return await Context.Users
+                .Include(u => u.Notifications)
+                .Include(u => u.SubscribedGoals)
+                    .ThenInclude(sg=> sg.UserGoal)
+                    .ThenInclude(ug=> ug.GoalType)
+                .Include(u => u.SubscribedGoals)
+                    .ThenInclude(sg=>sg.Events)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.UserName == userName);
         }

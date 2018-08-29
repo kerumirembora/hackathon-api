@@ -12,9 +12,10 @@ namespace Hackathon.Model
         public int Amount { get; set; }
         public string Unit { get; set; }
         public DateTime DeadlineDate { get; set; }
-        public User AdministrationUser { get; set; }
+        public virtual User AdministrationUser { get; set; }
         public int AdministrationUserId { get; set; }
-        public GoalType GoalType { get; set; }
+        public virtual GoalType GoalType { get; set; }
         public int GoalTypeId { get; set; }
+        public virtual List<GoalSubscriber> Subscribers { get; set; }
     }
 }

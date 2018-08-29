@@ -41,6 +41,8 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<int>("CompletedAmount");
 
+                    b.Property<int>("MoneyAmountSaved");
+
                     b.Property<int>("SubscriberId");
 
                     b.Property<int>("UserGoalId");
@@ -54,9 +56,9 @@ namespace Hackathon.Repositories.Migrations
                     b.ToTable("GoalSubscribers");
 
                     b.HasData(
-                        new { Id = 1, CompletedAmount = 20, SubscriberId = 1, UserGoalId = 1 },
-                        new { Id = 2, CompletedAmount = 20, SubscriberId = 1, UserGoalId = 2 },
-                        new { Id = 3, CompletedAmount = 10, SubscriberId = 2, UserGoalId = 2 }
+                        new { Id = 1, CompletedAmount = 20, MoneyAmountSaved = 12, SubscriberId = 1, UserGoalId = 1 },
+                        new { Id = 2, CompletedAmount = 30, MoneyAmountSaved = 20, SubscriberId = 1, UserGoalId = 2 },
+                        new { Id = 3, CompletedAmount = 40, MoneyAmountSaved = 30, SubscriberId = 2, UserGoalId = 2 }
                     );
                 });
 
@@ -151,15 +153,15 @@ namespace Hackathon.Repositories.Migrations
                     b.ToTable("UserGoals");
 
                     b.HasData(
-                        new { Id = 1, AdministrationUserId = 1, Amount = 100, DeadlineDate = new DateTime(2018, 9, 28, 11, 44, 14, 322, DateTimeKind.Local), GoalTypeId = 1, Name = "Decrease facebook usage this month", Unit = "Minutes" },
-                        new { Id = 2, AdministrationUserId = 1, Amount = 1000, DeadlineDate = new DateTime(2018, 10, 28, 11, 44, 14, 324, DateTimeKind.Local), GoalTypeId = 2, Name = "Stop cursing so much", Unit = "Curses" }
+                        new { Id = 1, AdministrationUserId = 1, Amount = 100, DeadlineDate = new DateTime(2018, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), GoalTypeId = 1, Name = "Decrease facebook usage this month", Unit = "Minutes" },
+                        new { Id = 2, AdministrationUserId = 1, Amount = 1000, DeadlineDate = new DateTime(2018, 9, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), GoalTypeId = 2, Name = "Stop cursing so much", Unit = "Curses" }
                     );
                 });
 
             modelBuilder.Entity("Hackathon.Model.Event", b =>
                 {
                     b.HasOne("Hackathon.Model.GoalSubscriber", "GoalSubscriber")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("GoalSubscriberId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -167,12 +169,12 @@ namespace Hackathon.Repositories.Migrations
             modelBuilder.Entity("Hackathon.Model.GoalSubscriber", b =>
                 {
                     b.HasOne("Hackathon.Model.User", "Subscriber")
-                        .WithMany()
+                        .WithMany("SubscribedGoals")
                         .HasForeignKey("SubscriberId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Hackathon.Model.UserGoal", "UserGoal")
-                        .WithMany()
+                        .WithMany("Subscribers")
                         .HasForeignKey("UserGoalId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -180,7 +182,7 @@ namespace Hackathon.Repositories.Migrations
             modelBuilder.Entity("Hackathon.Model.Notification", b =>
                 {
                     b.HasOne("Hackathon.Model.User", "User")
-                        .WithMany()
+                        .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -188,12 +190,12 @@ namespace Hackathon.Repositories.Migrations
             modelBuilder.Entity("Hackathon.Model.UserGoal", b =>
                 {
                     b.HasOne("Hackathon.Model.User", "AdministrationUser")
-                        .WithMany()
+                        .WithMany("DefinedGoals")
                         .HasForeignKey("AdministrationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Hackathon.Model.GoalType", "GoalType")
-                        .WithMany()
+                        .WithMany("UserGoals")
                         .HasForeignKey("GoalTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

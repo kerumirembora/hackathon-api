@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackathon.Model
@@ -11,5 +12,8 @@ namespace Hackathon.Model
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
+        public List<UserGoal> DefinedGoals { get; set; }
+        public List<GoalSubscriber> SubscribedGoals { get; set; }
+        public List<Notification> Notifications { get; set; }
     }
 }

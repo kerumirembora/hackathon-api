@@ -1,4 +1,5 @@
-﻿using Hackathon.API.DTO;
+﻿using Hackathon.API.DataTransferObjects;
+using Hackathon.API.Mappers;
 using Hackathon.Model;
 using Hackathon.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -18,13 +19,14 @@ namespace Hackathon.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] UserLoginInputDto input)
+        public async Task<ActionResult<UserLoginOutputDto>> Post([FromBody] UserLoginInputDto input)
         {
             User user = await _loginService.Login(input.UserName);
+
             if (user == null)
                 return NotFound();
             else
-                return user;
+                return user.ToUserLoginOutputDto();
 
         }
 

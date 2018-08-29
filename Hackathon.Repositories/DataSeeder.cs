@@ -38,7 +38,7 @@ namespace Hackathon.Repositories
                     Amount = 100,
                     Unit = "Minutes",
                     GoalTypeId = 1,
-                    DeadlineDate = DateTime.Now.AddDays(30)
+                    DeadlineDate = new DateTime(2018, 8, 29)
                 }
             );
 
@@ -51,7 +51,7 @@ namespace Hackathon.Repositories
                    Amount = 1000,
                    Unit = "Curses",
                    GoalTypeId = 2,
-                   DeadlineDate = DateTime.Now.AddDays(60)
+                   DeadlineDate = new DateTime(2018, 9, 29)
                }
             );
         }
@@ -64,6 +64,7 @@ namespace Hackathon.Repositories
                     Id = 1,
                     SubscriberId = 1,
                     CompletedAmount = 20,
+                    MoneyAmountSaved = 12,
                     UserGoalId = 1
                 });
 
@@ -72,7 +73,8 @@ namespace Hackathon.Repositories
                  {
                      Id = 2,
                      SubscriberId = 1,
-                     CompletedAmount = 20,
+                     CompletedAmount = 30,
+                     MoneyAmountSaved = 20,
                      UserGoalId = 2
                  });
 
@@ -81,7 +83,8 @@ namespace Hackathon.Repositories
                 {
                     Id = 3,
                     SubscriberId = 2,
-                    CompletedAmount = 10,
+                    CompletedAmount = 40,
+                    MoneyAmountSaved = 30,
                     UserGoalId = 2
                 });
 
