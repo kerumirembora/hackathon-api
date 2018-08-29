@@ -22,7 +22,7 @@ namespace Hackathon.API.Mappers
                 };
 
                 goal.metrics.Add(new UserLoginMetricOutputDto {
-                    description = subscribedGoal.UserGoal.GoalType.Description,
+                    description = subscribedGoal.UserGoal.GoalType.MetricDescription,
                     amount = subscribedGoal.CompletedAmount,
                     limit = subscribedGoal.UserGoal.Amount,
                     unit = subscribedGoal.UserGoal.Unit
@@ -40,16 +40,6 @@ namespace Hackathon.API.Mappers
 
             return output;
 
-            //return new UserLoginOutputDto {
-            //      id = user.Id,
-            //      userName = user.Name,
-            //      goals = user.SubscribedGoals.Select(sg => new UserLoginGoalOutputDto {
-            //          name = sg.UserGoal.GoalType.Name,
-            //          deadline = sg.UserGoal.DeadlineDate,
-            //          id = sg.UserGoal.GoalTypeId,
-            //          metrics = sg.
-            //      })
-            //};
         }
     }
 }

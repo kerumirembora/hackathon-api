@@ -3,14 +3,16 @@ using System;
 using Hackathon.Repositories.SQLLite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hackathon.Repositories.Migrations
 {
     [DbContext(typeof(SQLLiteContext))]
-    partial class SQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20180829135948_GoalTypeMetricDescription")]
+    partial class GoalTypeMetricDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

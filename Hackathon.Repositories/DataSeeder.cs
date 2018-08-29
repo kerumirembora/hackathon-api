@@ -21,9 +21,9 @@ namespace Hackathon.Repositories
         public static void SeedGoalTypes(ModelBuilder builder)
         {
             builder.Entity<GoalType>().HasData(
-                new GoalType { Id = 1, Name = "Social Media", Description = "Stop spending so much time on social media" },
-                new GoalType { Id = 2, Name = "Curse Jar", Description = "Stop cursing" },
-                new GoalType { Id = 3, Name = "Trip", Description = "Save for a trip" }
+                new GoalType { Id = 1, Name = "Facebook", Description = "Stop spending so much time on Facebook", MetricDescription = "Time spent on Facebook" },
+                new GoalType { Id = 2, Name = "Curse Jar", Description = "Stop cursing", MetricDescription = "Curses said" },
+                new GoalType { Id = 3, Name = "Trip", Description = "Save for a trip" , MetricDescription = "Money saved" }
             );
         }
 
