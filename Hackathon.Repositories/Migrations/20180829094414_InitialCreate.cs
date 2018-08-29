@@ -38,6 +38,28 @@ namespace Hackathon.Repositories.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Message = table.Column<string>(nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    ExpirationDate = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Notifications_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserGoals",
                 columns: table => new
                 {
@@ -150,6 +172,31 @@ namespace Hackathon.Repositories.Migrations
                 columns: new[] { "Id", "Age", "Email", "Name", "UserName" },
                 values: new object[] { 5, 55, "dominic@yahoo.com", "Dominic Howard", "Dominic" });
 
+            migrationBuilder.InsertData(
+                table: "UserGoals",
+                columns: new[] { "Id", "AdministrationUserId", "Amount", "DeadlineDate", "GoalTypeId", "Name", "Unit" },
+                values: new object[] { 1, 1, 100, new DateTime(2018, 9, 28, 11, 44, 14, 322, DateTimeKind.Local), 1, "Decrease facebook usage this month", "Minutes" });
+
+            migrationBuilder.InsertData(
+                table: "UserGoals",
+                columns: new[] { "Id", "AdministrationUserId", "Amount", "DeadlineDate", "GoalTypeId", "Name", "Unit" },
+                values: new object[] { 2, 1, 1000, new DateTime(2018, 10, 28, 11, 44, 14, 324, DateTimeKind.Local), 2, "Stop cursing so much", "Curses" });
+
+            migrationBuilder.InsertData(
+                table: "GoalSubscribers",
+                columns: new[] { "Id", "CompletedAmount", "SubscriberId", "UserGoalId" },
+                values: new object[] { 1, 20, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "GoalSubscribers",
+                columns: new[] { "Id", "CompletedAmount", "SubscriberId", "UserGoalId" },
+                values: new object[] { 2, 20, 1, 2 });
+
+            migrationBuilder.InsertData(
+                table: "GoalSubscribers",
+                columns: new[] { "Id", "CompletedAmount", "SubscriberId", "UserGoalId" },
+                values: new object[] { 3, 10, 2, 2 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Events_GoalSubscriberId",
                 table: "Events",
@@ -166,6 +213,11 @@ namespace Hackathon.Repositories.Migrations
                 column: "UserGoalId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notifications_UserId",
+                table: "Notifications",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserGoals_AdministrationUserId",
                 table: "UserGoals",
                 column: "AdministrationUserId");
@@ -180,6 +232,9 @@ namespace Hackathon.Repositories.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "GoalSubscribers");

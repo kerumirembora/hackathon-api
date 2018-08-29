@@ -10,6 +10,7 @@ namespace Hackathon.Repositories.SQLLite
         public DbSet<Event> Events { get; set; }
         public DbSet<GoalSubscriber> GoalSubscribers { get; set; }
         public DbSet<UserGoal> UserGoals { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public SQLLiteContext(DbContextOptions<SQLLiteContext> options) : base(options)
         {
@@ -26,6 +27,8 @@ namespace Hackathon.Repositories.SQLLite
             base.OnModelCreating(builder);
             DataSeeder.SeedUsers(builder);
             DataSeeder.SeedGoalTypes(builder);
+            DataSeeder.SeedUserGoals(builder);
+            DataSeeder.SeedGoalSubscribers(builder);
         }
     }
 }

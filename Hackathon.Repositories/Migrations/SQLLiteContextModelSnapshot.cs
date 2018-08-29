@@ -52,6 +52,12 @@ namespace Hackathon.Repositories.Migrations
                     b.HasIndex("UserGoalId");
 
                     b.ToTable("GoalSubscribers");
+
+                    b.HasData(
+                        new { Id = 1, CompletedAmount = 20, SubscriberId = 1, UserGoalId = 1 },
+                        new { Id = 2, CompletedAmount = 20, SubscriberId = 1, UserGoalId = 2 },
+                        new { Id = 3, CompletedAmount = 10, SubscriberId = 2, UserGoalId = 2 }
+                    );
                 });
 
             modelBuilder.Entity("Hackathon.Model.GoalType", b =>
@@ -72,6 +78,26 @@ namespace Hackathon.Repositories.Migrations
                         new { Id = 2, Description = "Stop cursing", Name = "Curse Jar" },
                         new { Id = 3, Description = "Save for a trip", Name = "Trip" }
                     );
+                });
+
+            modelBuilder.Entity("Hackathon.Model.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<DateTime>("ExpirationDate");
+
+                    b.Property<string>("Message");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Hackathon.Model.User", b =>
@@ -123,6 +149,11 @@ namespace Hackathon.Repositories.Migrations
                     b.HasIndex("GoalTypeId");
 
                     b.ToTable("UserGoals");
+
+                    b.HasData(
+                        new { Id = 1, AdministrationUserId = 1, Amount = 100, DeadlineDate = new DateTime(2018, 9, 28, 11, 44, 14, 322, DateTimeKind.Local), GoalTypeId = 1, Name = "Decrease facebook usage this month", Unit = "Minutes" },
+                        new { Id = 2, AdministrationUserId = 1, Amount = 1000, DeadlineDate = new DateTime(2018, 10, 28, 11, 44, 14, 324, DateTimeKind.Local), GoalTypeId = 2, Name = "Stop cursing so much", Unit = "Curses" }
+                    );
                 });
 
             modelBuilder.Entity("Hackathon.Model.Event", b =>
@@ -143,6 +174,14 @@ namespace Hackathon.Repositories.Migrations
                     b.HasOne("Hackathon.Model.UserGoal", "UserGoal")
                         .WithMany()
                         .HasForeignKey("UserGoalId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Hackathon.Model.Notification", b =>
+                {
+                    b.HasOne("Hackathon.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

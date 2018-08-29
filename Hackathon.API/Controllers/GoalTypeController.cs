@@ -11,18 +11,17 @@ namespace Hackathon.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GoalController : ControllerBase
+    public class GoalTypeController : ControllerBase
     {
         private readonly IGoalService _goalService;
 
-        public GoalController(IGoalService goalService)
+        public GoalTypeController(IGoalService goalService)
         {
             _goalService = goalService;
         }
 
         [HttpGet]
-        [Route("goaltypes")]
-        public IEnumerable<GoalType> GetGoalTypes()
+        public IEnumerable<GoalType> Get()
         {
             return  _goalService.GetGoalTypes();
         }
