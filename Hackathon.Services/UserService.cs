@@ -13,17 +13,31 @@ namespace Hackathon.Services
         IUserRepository _userRepository;
         INotificationRepository _notificationRepository;
         IUserGoalRepository _userGoalRepository;
+        IGoalSubscriberRepository _goalSubscriberRepository;
 
-        public UserService(IUserRepository userRepository, INotificationRepository notificationRepository, IUserGoalRepository userGoalRepository)
+        public UserService(IUserRepository userRepository, INotificationRepository notificationRepository, IUserGoalRepository userGoalRepository, IGoalSubscriberRepository goalSubscriberRepository)
         {
             _userRepository = userRepository;
             _notificationRepository = notificationRepository;
             _userGoalRepository = userGoalRepository;
+            _goalSubscriberRepository = goalSubscriberRepository;
         }
 
         public async Task<int> AddSubscriberToUserGoal(int userId, int userGoalId)
         {
             int subscriberId = -1;
+
+            bool exists = await _goalSubscriberRepository.Exists(userId, userGoalId);
+            if (!exists)
+            {
+                subscriberId = await _goalSubscriberRepository.Create(new GoalSubscriber {
+                    CompletedAmount = 0,
+                    MoneyAmountSaved = 0,
+                    SavingTransferAmount = 0,
+                    SubscriberId = userId,
+                    UserGoalId = userGoalId
+                });
+            }
 
             return subscriberId;
         }
