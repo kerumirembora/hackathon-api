@@ -122,10 +122,41 @@ namespace Hackathon.Repositories
                   Id = 3,
                   CreationDate = new DateTime(2018, 8, 27, 17, 2, 12),
                   ExpirationDate = new DateTime(2018, 10, 29, 12, 12, 12),
-                  Message = "Yesterday you cursed 45 times. Wash your mounth with soap bitch!!",
+                  Message = "Yesterday you cursed 45 times.",
                   UserId = 1,
                   UserGoalId = 2
               });
+        }
+
+        public static void SeedEvents(ModelBuilder builder)
+        {
+            builder.Entity<Event>().HasData(
+                new Event
+                {
+                    Id = 1,
+                    CreationDate = new DateTime(2018, 8, 29, 12, 12, 12),
+                    Description = "User John Doe invited.",
+                    GoalSubscriberId = 1
+                });
+
+            builder.Entity<Event>().HasData(
+                          new Event
+                          {
+                              Id = 2,
+                              CreationDate = new DateTime(2018, 8, 29, 13, 52, 12),
+                              Description = "Neque porro quisquam est qui dolorem .",
+                              GoalSubscriberId = 1
+                          });
+
+            builder.Entity<Event>().HasData(
+                          new Event
+                          {
+                              Id = 3,
+                              CreationDate = new DateTime(2018, 8, 29, 17, 42, 12),
+                              Description = "Ipsum quia dolor sit amet, consectetur, adipisci velit.",
+                              GoalSubscriberId = 1
+                          });
+
         }
     }
 }

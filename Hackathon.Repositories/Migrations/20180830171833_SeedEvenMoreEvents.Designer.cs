@@ -3,14 +3,16 @@ using System;
 using Hackathon.Repositories.SQLLite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hackathon.Repositories.Migrations
 {
     [DbContext(typeof(SQLLiteContext))]
-    partial class SQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20180830171833_SeedEvenMoreEvents")]
+    partial class SeedEvenMoreEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace Hackathon.Repositories.Migrations
                     b.HasData(
                         new { Id = 1, CreationDate = new DateTime(2018, 8, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Description = "User John Doe invited.", GoalSubscriberId = 1 },
                         new { Id = 2, CreationDate = new DateTime(2018, 8, 29, 13, 52, 12, 0, DateTimeKind.Unspecified), Description = "Neque porro quisquam est qui dolorem .", GoalSubscriberId = 1 },
-                        new { Id = 3, CreationDate = new DateTime(2018, 8, 29, 17, 42, 12, 0, DateTimeKind.Unspecified), Description = "Ipsum quia dolor sit amet, consectetur, adipisci velit.", GoalSubscriberId = 1 }
+                        new { Id = 3, CreationDate = new DateTime(2018, 8, 29, 12, 12, 12, 0, DateTimeKind.Unspecified), Description = "Ipsum quia dolor sit amet, consectetur, adipisci velit.", GoalSubscriberId = 1 }
                     );
                 });
 

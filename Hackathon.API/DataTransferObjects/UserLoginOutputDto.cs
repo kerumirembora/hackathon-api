@@ -22,19 +22,13 @@ namespace Hackathon.API.DataTransferObjects
         public string Name { get; set; }
         public string GoalTypeName { get; set; }
         public DateTime Deadline  { get; set; }
-        public List<UserLoginMetricOutputDto> Metrics { get; set; }
+        public List<MetricOutputDto> Metrics { get; set; }
 
         public UserLoginGoalOutputDto()
         {
-            Metrics = new List<UserLoginMetricOutputDto>();
+            Metrics = new List<MetricOutputDto>();
         }
     }
 
-    public class UserLoginMetricOutputDto
-    {
-        public string Description { get; set; }
-        public string Unit { get; set; }
-        public int Amount { get; set; }
-        public int Limit { get; set; }
-    }
+   
 }

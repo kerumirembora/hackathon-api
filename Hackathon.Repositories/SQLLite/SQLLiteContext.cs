@@ -31,6 +31,7 @@ namespace Hackathon.Repositories.SQLLite
             DataSeeder.SeedUserGoals(builder);
             DataSeeder.SeedGoalSubscribers(builder);
             DataSeeder.SeedNotifications(builder);
+            DataSeeder.SeedEvents(builder);
         }
     }
 }

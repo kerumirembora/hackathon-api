@@ -11,11 +11,13 @@ namespace Hackathon.Services
     {
         IGoalTypeRepository _goalTypeRepository;
         IUserGoalRepository _userGoalRepository;
+        IEventRepository _eventRepository;
 
-        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository)
+        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository, IEventRepository eventRepository)
         {
             _goalTypeRepository = goalTypeRepository;
             _userGoalRepository = userGoalRepository;
+            _eventRepository = eventRepository;
         }
 
         public List<GoalType> GetAllGoalTypes()
@@ -23,12 +25,12 @@ namespace Hackathon.Services
             return _goalTypeRepository.GetAll().ToList();
         }
 
-        public async Task<UserGoal> GetUserGoalDetails(int userGoalId, int loggedUserId)
+        public async Task<(UserGoal UserGoal, List<Event> LoggedUserEvents)> GetUserGoalDetails(int userGoalId, int loggedUserId)
         {
             UserGoal userGoal = await _userGoalRepository.GetUserGoalWithSubscribers(userGoalId);
-            
+            List<Event> loggedUserEvents = _eventRepository.GetUserGoalSubscriberEvents(userGoalId, loggedUserId);
 
-            return userGoal;
+            return (userGoal, loggedUserEvents);
         }
     }
 }

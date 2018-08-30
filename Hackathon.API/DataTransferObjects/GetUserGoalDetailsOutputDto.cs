@@ -16,11 +16,14 @@ namespace Hackathon.API.DataTransferObjects
         public GoalTypeOutputDto GoalType { get; set; }
         public List<UserOutputDto> ParticipatingUsers { get; set; }
         public List<EventOutputDto> LoggedUserEvents { get; set; }
+        public List<MetricOutputDto> Metrics { get; set; }
+
 
         public GetUserGoalDetailsOutputDto()
         {
             ParticipatingUsers = new List<UserOutputDto>();
             LoggedUserEvents = new List<EventOutputDto>();
+            Metrics = new List<MetricOutputDto>();
         }
     }
 

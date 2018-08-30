@@ -24,14 +24,14 @@ namespace Hackathon.API.Mappers
                     GoalId = subscribedGoal.UserGoal.Id
                 };
 
-                goal.Metrics.Add(new UserLoginMetricOutputDto {
+                goal.Metrics.Add(new MetricOutputDto {
                     Description = subscribedGoal.UserGoal.GoalType.MetricDescription,
                     Amount = subscribedGoal.CompletedAmount,
                     Limit = subscribedGoal.UserGoal.Amount,
                     Unit = subscribedGoal.UserGoal.Unit
                 });
 
-                goal.Metrics.Add(new UserLoginMetricOutputDto
+                goal.Metrics.Add(new MetricOutputDto
                 {
                     Description = "Amount saved",
                     Amount = subscribedGoal.MoneyAmountSaved,

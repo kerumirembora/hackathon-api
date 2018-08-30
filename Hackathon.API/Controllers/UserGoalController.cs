@@ -30,7 +30,7 @@ namespace Hackathon.API.Controllers
         public async Task<ActionResult<GetUserGoalDetailsOutputDto>> Get(int id, int loggedUserId)
         {
             var userGoal = await _goalService.GetUserGoalDetails(id, loggedUserId);
-            return userGoal.ToGetUserGoalDetailsOutputDto();
+            return userGoal.ToGetUserGoalDetailsOutputDto(loggedUserId);
         }
 
     }

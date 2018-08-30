@@ -7,6 +7,6 @@ namespace Hackathon.Services.Interfaces
     public interface IGoalService
     {
         List<GoalType> GetAllGoalTypes();
-        Task<UserGoal> GetUserGoalDetails(int userGoalId, int loggedUserId);
+        Task<(UserGoal UserGoal, List<Event> LoggedUserEvents)> GetUserGoalDetails(int userGoalId, int loggedUserId);
     }
 }
