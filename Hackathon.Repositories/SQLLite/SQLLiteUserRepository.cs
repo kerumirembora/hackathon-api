@@ -12,6 +12,16 @@ namespace Hackathon.Repositories.SQLLite
     {
         public SQLLiteUserRepository(SQLLiteContext dbContext) : base(dbContext) { }
 
+        public List<User> GetAllUserGoalSubscribers(int userGoalId)
+        {
+            return Context.UserGoals
+                .Include(ug => ug.Subscribers)
+                    .ThenInclude(s => s.Subscriber)
+                .Where(ug => ug.Id == userGoalId)
+                .SelectMany(ug => ug.Subscribers.Select(s => s.Subscriber))
+                .ToList();
+        }
+
         public async Task<User> GetByUserName(string userName)
         {
             return await Context.Users

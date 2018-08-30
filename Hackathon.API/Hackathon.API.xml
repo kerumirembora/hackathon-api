@@ -16,6 +16,12 @@
             </summary>
             <returns>List of Users</returns>
         </member>
+        <member name="M:Hackathon.API.Controllers.UserController.GetAvailableSubscribers(System.Int32)">
+            <summary>
+            Gets a list of all available users to subscribe a user goal
+            </summary>
+            <returns>User list</returns>
+        </member>
         <member name="M:Hackathon.API.Controllers.UserController.LoginSortOf(Hackathon.API.DataTransferObjects.UserLoginInputDto)">
             <summary>
             Fake Login/Authentication 

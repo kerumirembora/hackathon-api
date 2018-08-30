@@ -67,6 +67,15 @@ namespace Hackathon.Services
             return await _userGoalRepository.Create(userGoal);
         }
 
+        public List<User> GetAllSubscribableUsers(int userGoalId)
+        {
+            var allUsers = _userRepository.GetAll();
+            var userGoalSubscribers = _userRepository.GetAllUserGoalSubscribers(userGoalId);
+            return allUsers.Where(x => !userGoalSubscribers.Any(y => y.Id == x.Id)).ToList();
+
+            //return allUsers.Except(userGoalSubscribers).ToList();
+        }
+
         public List<User> GetAllUsers()
         {
             return _userRepository.GetAll().ToList();

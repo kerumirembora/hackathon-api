@@ -5,5 +5,6 @@ namespace Hackathon.Repositories.Interfaces
 {
     public interface IUserGoalRepository : IBaseRepository<UserGoal>
     {
+        
     }
 }

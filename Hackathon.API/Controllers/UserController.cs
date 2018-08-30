@@ -24,9 +24,19 @@ namespace Hackathon.API.Controllers
         /// </summary>
         /// <returns>List of Users</returns>
         [HttpGet]
-        public ActionResult<GetAllUsersOutputDto> GetAllUsers()
+        public ActionResult<GetUserListOutputDto> GetAllUsers()
         {
-            return _userService.GetAllUsers().ToGetAllUsersOutputDto();
+            return _userService.GetAllUsers().ToGetUserListOutputDto();
+        }
+
+        /// <summary>
+        /// Gets a list of all available users to subscribe a user goal
+        /// </summary>
+        /// <returns>User list</returns>
+        [HttpGet("{userId}/usergoal/{userGoalId}/availablesubscribers")]
+        public ActionResult<GetUserListOutputDto> GetAvailableSubscribers([FromRoute] int userGoalId)
+        {
+            return _userService.GetAllSubscribableUsers(userGoalId).ToGetUserListOutputDto();
         }
 
         /// <summary>

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Hackathon.API.DataTransferObjects
 {
-    public class GetAllUsersOutputDto
+    public class GetUserListOutputDto
     {
         public List<UserOutputDto> Users { get; set; }
 
-        public GetAllUsersOutputDto()
+        public GetUserListOutputDto()
         {
             Users = new List<UserOutputDto>();
         }

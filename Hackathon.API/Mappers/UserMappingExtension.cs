@@ -44,12 +44,12 @@ namespace Hackathon.API.Mappers
 
         }
 
-        public static GetAllUsersOutputDto ToGetAllUsersOutputDto(this List<User> users)
+        public static GetUserListOutputDto ToGetUserListOutputDto(this List<User> users)
         {
             if (users == null)
-                return new GetAllUsersOutputDto();
+                return new GetUserListOutputDto();
 
-            return new GetAllUsersOutputDto
+            return new GetUserListOutputDto
             {
                 Users = users.Select(n => new UserOutputDto
                 {

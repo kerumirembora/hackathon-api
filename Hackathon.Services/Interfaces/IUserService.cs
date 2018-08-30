@@ -10,6 +10,7 @@ namespace Hackathon.Services.Interfaces
     {
         Task<User> Login(string userName);
         List<User> GetAllUsers();
+        List<User> GetAllSubscribableUsers(int userGoalId);
         List<Notification> GetNotifications(int userId);
         Task<int> CreateUserGoal(int userId, string name, int amount, string unit, DateTime deadlineDate, int goalTypeId);
         Task<int> AddSubscriberToUserGoal(int userId, int userGoalId);
