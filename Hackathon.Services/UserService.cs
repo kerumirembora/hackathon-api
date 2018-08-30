@@ -23,7 +23,7 @@ namespace Hackathon.Services
 
         public async Task<int> CreateUserGoal(int userId, string name, int amount, string unit, DateTime deadlineDate, int goalTypeId)
         {
-            //Create user goal
+            //Create user goal and add creating user as a subscriber
             UserGoal userGoal = new UserGoal
             {
                 AdministrationUserId = userId,
@@ -31,23 +31,18 @@ namespace Hackathon.Services
                 DeadlineDate = deadlineDate,
                 GoalTypeId = goalTypeId,
                 Name = name,
-                Unit = unit
+                Unit = unit,
+                Subscribers = new List<GoalSubscriber> { new GoalSubscriber
+                                {
+                                    CompletedAmount = 0,
+                                    MoneyAmountSaved = 0,
+                                    SubscriberId = userId
+                                }
+                }
             };
 
-            int userGoalId = await _userGoalRepository.Create(userGoal);
-
-            //add user goal creating user as a subscriber to the previously created goal
-            GoalSubscriber subscriber = new GoalSubscriber
-            {
-                CompletedAmount = 0,
-                MoneyAmountSaved = 0,
-                SubscriberId = userId,
-                UserGoalId = userGoalId
-            };
-
-            await _userGoalRepository.Create(userGoal);
-
-            return userGoalId;
+            // return created user goal id
+            return await _userGoalRepository.Create(userGoal);
         }
 
         public List<Notification> GetNotifications(int userId)
