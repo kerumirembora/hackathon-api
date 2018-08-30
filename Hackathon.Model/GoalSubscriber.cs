@@ -10,6 +10,7 @@ namespace Hackathon.Model
         public int Id { get; set; }
         public int CompletedAmount { get; set; }
         public int MoneyAmountSaved { get; set; }
+        public int SavingTransferAmount { get; set; }
         public User Subscriber { get; set; }
         public int SubscriberId { get; set; }
         public UserGoal UserGoal { get; set; }

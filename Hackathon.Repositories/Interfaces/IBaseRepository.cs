@@ -14,5 +14,6 @@ namespace Hackathon.Repositories.Interfaces
         Task<int> Create(TEntity entity);
         Task Update(int id, TEntity entity);
         Task Delete(int id);
+        Task<bool> Exists(int id);
     }
 }

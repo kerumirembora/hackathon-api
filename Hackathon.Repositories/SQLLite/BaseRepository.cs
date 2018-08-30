@@ -51,5 +51,10 @@ namespace Hackathon.Repositories.SQLLite
             _dbContext.Set<TEntity>().Update(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await _dbContext.Set<TEntity>().AnyAsync(e => e.Id == id);
+        }
     }
 }

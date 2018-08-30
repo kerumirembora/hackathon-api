@@ -65,6 +65,7 @@ namespace Hackathon.Repositories
                     SubscriberId = 1,
                     CompletedAmount = 20,
                     MoneyAmountSaved = 12,
+                    SavingTransferAmount = 3,
                     UserGoalId = 1
                 });
 
@@ -75,6 +76,7 @@ namespace Hackathon.Repositories
                      SubscriberId = 1,
                      CompletedAmount = 30,
                      MoneyAmountSaved = 20,
+                     SavingTransferAmount = 8,
                      UserGoalId = 2
                  });
 
@@ -85,6 +87,7 @@ namespace Hackathon.Repositories
                     SubscriberId = 2,
                     CompletedAmount = 40,
                     MoneyAmountSaved = 30,
+                    SavingTransferAmount = 5,
                     UserGoalId = 2
                 });
 

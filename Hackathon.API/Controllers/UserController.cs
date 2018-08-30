@@ -40,13 +40,26 @@ namespace Hackathon.API.Controllers
         /// Creates a User Goal
         /// </summary>
         /// <param name="input">Data needed to commit the request</param>
-        /// <returns>User info and subscribed goals</returns>
+        /// <returns>Created user goal id</returns>
         [HttpPost("{userId}/usergoal")]
         public async Task<ActionResult<CreateUserGoalOutputDto>> CreateUserGoal([FromBody] CreateUserGoalInputDto input)
         {
-            int userGoalId = await _userService.CreateUserGoal(input.UserId, input.Name, input.Amount, input.Unit, input.DeadlineDate, input.GoalTypeId);
+            int userGoalId = await _userService.CreateUserGoal(input.UserId, input.Name, input.AmountLimit, input.Unit, input.DeadlineDate, input.GoalTypeId);
 
             return new CreateUserGoalOutputDto { UserGoalId = userGoalId };
+        }
+
+        /// <summary>
+        /// Subscribes/adds/invites a user to a user goal
+        /// </summary>
+        /// <param name="input">Data needed to commit the request</param>
+        /// <returns>Subscriber id</returns>
+        [HttpPut("{userId}/usergoal/{userGoalId}/subscriber")]
+        public async Task<ActionResult<SubscribeUserGoalOutputDto>> SubscribeUserGoal([FromBody] SubscribeUserGoalInputDto input, [FromRoute] int userGoalId)
+        {
+            int subscriberId = await _userService.AddSubscriberToUserGoal(input.UserId, userGoalId);
+
+            return new SubscribeUserGoalOutputDto { SubscriberId = subscriberId };
         }
 
         /// <summary>

@@ -7,6 +7,5 @@ namespace Hackathon.Services.Interfaces
     {
         List<GoalType> GetGoalTypes();
 
-        bool CreateUserGoal();
     }
 }

@@ -9,7 +9,8 @@ namespace Hackathon.API.DataTransferObjects
     {
         public int UserId { get; set; }
         public string Name { get; set; }
-        public int Amount { get; set; }
+        public int AmountLimit { get; set; }
+        public int SavingsAmount { get; set; }
         public string Unit { get; set; }
         public DateTime DeadlineDate { get; set; }
         public int GoalTypeId { get; set; }
