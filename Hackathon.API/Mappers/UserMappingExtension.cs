@@ -17,7 +17,8 @@ namespace Hackathon.API.Mappers
             foreach (var subscribedGoal in user.SubscribedGoals)
             {
                 UserLoginGoalOutputDto goal =  new UserLoginGoalOutputDto {
-                    Name = subscribedGoal.UserGoal.GoalType.Name,
+                    Name = subscribedGoal.UserGoal.Name,
+                    GoalTypeName = subscribedGoal.UserGoal.GoalType.Name,
                     Deadline = subscribedGoal.UserGoal.DeadlineDate,
                     GoalTypeId = subscribedGoal.UserGoal.GoalTypeId,
                     GoalId = subscribedGoal.UserGoal.Id

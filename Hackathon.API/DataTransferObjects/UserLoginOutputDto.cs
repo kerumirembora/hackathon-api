@@ -20,6 +20,7 @@ namespace Hackathon.API.DataTransferObjects
         public int GoalTypeId { get; set; }
         public int GoalId { get; set; }
         public string Name { get; set; }
+        public string GoalTypeName { get; set; }
         public DateTime Deadline  { get; set; }
         public List<UserLoginMetricOutputDto> Metrics { get; set; }
 
