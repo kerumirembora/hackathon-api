@@ -8,5 +8,6 @@ namespace Hackathon.API.DataTransferObjects
     public class SubscribeUserGoalOutputDto
     {
         public int SubscriberId { get; set; }
+        public int UserGoalId { get; set; }
     }
 }

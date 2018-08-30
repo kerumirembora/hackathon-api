@@ -20,5 +20,9 @@ namespace Hackathon.Services
             return _goalTypeRepository.GetAll().ToList();
         }
 
+        public List<UserGoal> GetUserGoalDetails(int userGoalId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

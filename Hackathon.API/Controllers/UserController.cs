@@ -79,7 +79,11 @@ namespace Hackathon.API.Controllers
         {
             int subscriberId = await _userService.AddSubscriberToUserGoal(input.UserId, userGoalId);
 
-            return new SubscribeUserGoalOutputDto { SubscriberId = subscriberId };
+            return new SubscribeUserGoalOutputDto
+            {
+                SubscriberId = subscriberId,
+                UserGoalId = userGoalId
+            };
         }
 
         /// <summary>

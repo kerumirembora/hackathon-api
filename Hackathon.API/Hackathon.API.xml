@@ -50,5 +50,11 @@
             <param name="userId">User Id</param>
             <returns>List of user notifications</returns>
         </member>
+        <member name="M:Hackathon.API.Controllers.UserGoalController.Get(System.Int32)">
+            <summary>
+            Gets a user goal detail
+            </summary>
+            <returns>List of Goal Types</returns>
+        </member>
     </members>
 </doc>
