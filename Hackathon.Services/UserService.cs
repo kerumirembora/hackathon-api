@@ -45,7 +45,7 @@ namespace Hackathon.Services
             return subscriberId;
         }
 
-        public async Task<int> CreateUserGoal(int userId, string name, int amount, string unit, DateTime deadlineDate, int goalTypeId, int savingsAmount)
+        public async Task<int> CreateUserGoal(int userId, string name, int amount, string unit, DateTime deadlineDate, int goalTypeId, int? savingsAmount)
         {
             //Create user goal and add creating user as a subscriber
             UserGoal userGoal = new UserGoal
