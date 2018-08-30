@@ -15,17 +15,13 @@ namespace Hackathon.API.DataTransferObjects
         public int AdministrationUserId { get; set; }
         public GoalTypeOutputDto GoalType { get; set; }
         public List<UserOutputDto> ParticipatingUsers { get; set; }
-    }
+        public List<EventOutputDto> LoggedUserEvents { get; set; }
 
-    public class GetUserGoalDetailsOutputDtoe
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Amount { get; set; }
-        public string Unit { get; set; }
-        public DateTime DeadlineDate { get; set; }
-        public int AdministrationUserId { get; set; }
-        public GoalTypeOutputDto GoalType { get; set; }
+        public GetUserGoalDetailsOutputDto()
+        {
+            ParticipatingUsers = new List<UserOutputDto>();
+            LoggedUserEvents = new List<EventOutputDto>();
+        }
     }
 
 }

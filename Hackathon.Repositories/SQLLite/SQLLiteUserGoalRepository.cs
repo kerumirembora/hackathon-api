@@ -12,6 +12,13 @@ namespace Hackathon.Repositories.SQLLite
     {
         public SQLLiteUserGoalRepository(SQLLiteContext dbContext) : base(dbContext) { }
 
-      
+        public async Task<UserGoal> GetUserGoalWithSubscribers(int userGoalId)
+        {
+            return await Context.UserGoals
+                .Include(ug => ug.Subscribers)
+                    .ThenInclude(s=>s.Subscriber)
+                .Include(ug => ug.GoalType)
+                .FirstOrDefaultAsync(ug => ug.Id == userGoalId);
+        }
     }
 }

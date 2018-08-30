@@ -27,9 +27,10 @@ namespace Hackathon.API.Controllers
         /// </summary>
         /// <returns>List of Goal Types</returns>
         [HttpGet("{id}")]
-        public ActionResult<GetAllGoalTypesOutputDto> Get(int id)
+        public async Task<ActionResult<GetUserGoalDetailsOutputDto>> Get(int id, int loggedUserId)
         {
-            return  _goalService.GetAllGoalTypes().ToGetAllGoalTypesOutputDto();
+            var userGoal = await _goalService.GetUserGoalDetails(id, loggedUserId);
+            return userGoal.ToGetUserGoalDetailsOutputDto();
         }
 
     }

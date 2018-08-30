@@ -3,16 +3,19 @@ using Hackathon.Repositories.Interfaces;
 using Hackathon.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hackathon.Services
 {
     public class GoalService : IGoalService
     {
         IGoalTypeRepository _goalTypeRepository;
+        IUserGoalRepository _userGoalRepository;
 
-        public GoalService(IGoalTypeRepository goalTypeRepository)
+        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository)
         {
             _goalTypeRepository = goalTypeRepository;
+            _userGoalRepository = userGoalRepository;
         }
 
         public List<GoalType> GetAllGoalTypes()
@@ -20,9 +23,12 @@ namespace Hackathon.Services
             return _goalTypeRepository.GetAll().ToList();
         }
 
-        public List<UserGoal> GetUserGoalDetails(int userGoalId)
+        public async Task<UserGoal> GetUserGoalDetails(int userGoalId, int loggedUserId)
         {
-            throw new System.NotImplementedException();
+            UserGoal userGoal = await _userGoalRepository.GetUserGoalWithSubscribers(userGoalId);
+            
+
+            return userGoal;
         }
     }
 }
