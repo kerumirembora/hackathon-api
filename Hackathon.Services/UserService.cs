@@ -4,6 +4,7 @@ using Hackathon.Repositories.SQLLite;
 using Hackathon.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hackathon.Services
@@ -64,6 +65,11 @@ namespace Hackathon.Services
 
             // return created user goal id
             return await _userGoalRepository.Create(userGoal);
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _userRepository.GetAll().ToList();
         }
 
         public List<Notification> GetNotifications(int userId)

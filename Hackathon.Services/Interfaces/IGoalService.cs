@@ -5,7 +5,7 @@ namespace Hackathon.Services.Interfaces
 {
     public interface IGoalService
     {
-        List<GoalType> GetGoalTypes();
+        List<GoalType> GetAllGoalTypes();
 
     }
 }

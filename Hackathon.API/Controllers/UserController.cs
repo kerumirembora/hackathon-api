@@ -20,12 +20,22 @@ namespace Hackathon.API.Controllers
         }
 
         /// <summary>
+        /// Gets a list of all available users
+        /// </summary>
+        /// <returns>List of Users</returns>
+        [HttpGet]
+        public ActionResult<GetAllUsersOutputDto> GetAllUsers()
+        {
+            return _userService.GetAllUsers().ToGetAllUsersOutputDto();
+        }
+
+        /// <summary>
         /// Fake Login/Authentication 
         /// </summary>
         /// <param name="input">User Name</param>
         /// <returns>User info and subscribed goals</returns>
         [HttpPost]
-        public async Task<ActionResult<UserLoginOutputDto>> Post([FromBody] UserLoginInputDto input)
+        public async Task<ActionResult<UserLoginOutputDto>> LoginSortOf([FromBody] UserLoginInputDto input)
         {
             User user = await _userService.Login(input.UserName);
 

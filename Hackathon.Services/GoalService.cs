@@ -15,7 +15,7 @@ namespace Hackathon.Services
             _goalTypeRepository = goalTypeRepository;
         }
 
-        public List<GoalType> GetGoalTypes()
+        public List<GoalType> GetAllGoalTypes()
         {
             return _goalTypeRepository.GetAll().ToList();
         }

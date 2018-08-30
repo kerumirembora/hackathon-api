@@ -1,5 +1,6 @@
 ﻿using Hackathon.API.DataTransferObjects;
 using Hackathon.Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Hackathon.API.Mappers
@@ -40,6 +41,25 @@ namespace Hackathon.API.Mappers
             }
 
             return output;
+
+        }
+
+        public static GetAllUsersOutputDto ToGetAllUsersOutputDto(this List<User> users)
+        {
+            if (users == null)
+                return new GetAllUsersOutputDto();
+
+            return new GetAllUsersOutputDto
+            {
+                Users = users.Select(n => new UserOutputDto
+                {
+                    Id = n.Id,
+                    Name = n.Name,
+                    Age = n.Age,
+                    Email = n.Email,
+                    UserName = n.Email
+                }).ToList()
+            };
 
         }
     }

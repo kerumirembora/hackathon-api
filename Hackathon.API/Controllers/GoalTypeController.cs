@@ -29,7 +29,7 @@ namespace Hackathon.API.Controllers
         [HttpGet]
         public ActionResult<GetAllGoalTypesOutputDto> Get()
         {
-            return  _goalService.GetGoalTypes().ToGetAllGoalTypesOutputDto();
+            return  _goalService.GetAllGoalTypes().ToGetAllGoalTypesOutputDto();
         }
 
     }

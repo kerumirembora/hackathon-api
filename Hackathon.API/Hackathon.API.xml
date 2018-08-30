@@ -10,7 +10,13 @@
             </summary>
             <returns>List of Goal Types</returns>
         </member>
-        <member name="M:Hackathon.API.Controllers.UserController.Post(Hackathon.API.DataTransferObjects.UserLoginInputDto)">
+        <member name="M:Hackathon.API.Controllers.UserController.GetAllUsers">
+            <summary>
+            Gets a list of all available users
+            </summary>
+            <returns>List of Users</returns>
+        </member>
+        <member name="M:Hackathon.API.Controllers.UserController.LoginSortOf(Hackathon.API.DataTransferObjects.UserLoginInputDto)">
             <summary>
             Fake Login/Authentication 
             </summary>
