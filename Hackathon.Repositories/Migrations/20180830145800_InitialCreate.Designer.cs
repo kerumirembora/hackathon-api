@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon.Repositories.Migrations
 {
     [DbContext(typeof(SQLLiteContext))]
-    [Migration("20180830100727_SavingTransferAmount")]
-    partial class SavingTransferAmount
+    [Migration("20180830145800_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<int>("MoneyAmountSaved");
 
-                    b.Property<int>("SavingTransferAmount");
+                    b.Property<int?>("SavingTransferAmount");
 
                     b.Property<int>("SubscriberId");
 

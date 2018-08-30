@@ -40,6 +40,8 @@ namespace Hackathon.Services
                 });
             }
 
+
+
             return subscriberId;
         }
 
@@ -73,8 +75,6 @@ namespace Hackathon.Services
             var allUsers = _userRepository.GetAll();
             var userGoalSubscribers = _userRepository.GetAllUserGoalSubscribers(userGoalId);
             return allUsers.Where(x => !userGoalSubscribers.Any(y => y.Id == x.Id)).ToList();
-
-            //return allUsers.Except(userGoalSubscribers).ToList();
         }
 
         public List<User> GetAllUsers()

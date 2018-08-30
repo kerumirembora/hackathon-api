@@ -76,6 +76,7 @@ namespace Hackathon.Repositories.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CompletedAmount = table.Column<int>(nullable: false),
                     MoneyAmountSaved = table.Column<int>(nullable: false),
+                    SavingTransferAmount = table.Column<int>(nullable: true),
                     SubscriberId = table.Column<int>(nullable: false),
                     UserGoalId = table.Column<int>(nullable: false)
                 },
@@ -198,18 +199,18 @@ namespace Hackathon.Repositories.Migrations
 
             migrationBuilder.InsertData(
                 table: "GoalSubscribers",
-                columns: new[] { "Id", "CompletedAmount", "MoneyAmountSaved", "SubscriberId", "UserGoalId" },
-                values: new object[] { 1, 20, 12, 1, 1 });
+                columns: new[] { "Id", "CompletedAmount", "MoneyAmountSaved", "SavingTransferAmount", "SubscriberId", "UserGoalId" },
+                values: new object[] { 1, 20, 12, 3, 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "GoalSubscribers",
-                columns: new[] { "Id", "CompletedAmount", "MoneyAmountSaved", "SubscriberId", "UserGoalId" },
-                values: new object[] { 2, 30, 20, 1, 2 });
+                columns: new[] { "Id", "CompletedAmount", "MoneyAmountSaved", "SavingTransferAmount", "SubscriberId", "UserGoalId" },
+                values: new object[] { 2, 30, 20, 8, 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "GoalSubscribers",
-                columns: new[] { "Id", "CompletedAmount", "MoneyAmountSaved", "SubscriberId", "UserGoalId" },
-                values: new object[] { 3, 40, 30, 2, 2 });
+                columns: new[] { "Id", "CompletedAmount", "MoneyAmountSaved", "SavingTransferAmount", "SubscriberId", "UserGoalId" },
+                values: new object[] { 3, 40, 30, 5, 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "Notifications",

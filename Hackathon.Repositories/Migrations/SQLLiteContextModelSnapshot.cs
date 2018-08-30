@@ -43,7 +43,7 @@ namespace Hackathon.Repositories.Migrations
 
                     b.Property<int>("MoneyAmountSaved");
 
-                    b.Property<int>("SavingTransferAmount");
+                    b.Property<int?>("SavingTransferAmount");
 
                     b.Property<int>("SubscriberId");
 
