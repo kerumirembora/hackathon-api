@@ -27,10 +27,21 @@ namespace Hackathon.API.Controllers
         /// </summary>
         /// <returns>List of Goal Types</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetUserGoalDetailsOutputDto>> Get(int id, int loggedUserId)
+        public async Task<ActionResult<GetUserGoalDetailsOutputDto>> GetUserGoalDetails(int id, int loggedUserId)
         {
             var userGoal = await _goalService.GetUserGoalDetails(id, loggedUserId);
             return userGoal.ToGetUserGoalDetailsOutputDto(loggedUserId);
+        }
+
+        /// <summary>
+        /// Updates User Goal Amount
+        /// </summary>
+        /// <returns>List of Goal Types</returns>
+        [HttpPost("{id}/subscriber/{subscriberId}")]
+        public async Task<ActionResult<GetUserGoalDetailsOutputDto>> Get(int id, int subscriberId)
+        {
+            //var userGoal = await _goalService.GetUserGoalDetails(id, loggedUserId);
+            //return userGoal.ToGetUserGoalDetailsOutputDto(loggedUserId);
         }
 
     }
