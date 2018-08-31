@@ -1,6 +1,5 @@
 ﻿using Hackathon.Model;
 using Hackathon.Repositories.Interfaces;
-using Hackathon.Repositories.SQLLite;
 using Hackathon.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -39,8 +38,6 @@ namespace Hackathon.Services
                     UserGoalId = userGoalId
                 });
             }
-
-
 
             return subscriberId;
         }

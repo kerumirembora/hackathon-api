@@ -8,5 +8,6 @@ namespace Hackathon.Services.Interfaces
     {
         List<GoalType> GetAllGoalTypes();
         Task<(UserGoal UserGoal, List<Event> LoggedUserEvents)> GetUserGoalDetails(int userGoalId, int loggedUserId);
+        Task<bool> UpdateGoalSubscriberAmount(int userId, int userGoalId, int completedAmountIncrement, int moneyAmountSaved, int? savingTransferAmount);
     }
 }

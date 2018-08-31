@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Hackathon.API.DataTransferObjects;
 using Hackathon.API.Mappers;
-using Hackathon.Model;
 using Hackathon.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackathon.API.Controllers
@@ -38,10 +33,11 @@ namespace Hackathon.API.Controllers
         /// </summary>
         /// <returns>List of Goal Types</returns>
         [HttpPost("{id}/subscriber/{subscriberId}")]
-        public async Task<ActionResult<GetUserGoalDetailsOutputDto>> Get(int id, int subscriberId)
+        public async Task<ActionResult<bool>> UpdateUserGoalAmount(int id, int subscriberId, [FromBody] UpdateGoalSubscriberDetailsInputDto input)
         {
-            //var userGoal = await _goalService.GetUserGoalDetails(id, loggedUserId);
-            //return userGoal.ToGetUserGoalDetailsOutputDto(loggedUserId);
+            var updated = await _goalService.UpdateGoalSubscriberAmount(subscriberId, id, input.CompletedAmountIncrement, input.MoneyAmountSaved, input.SavingTransferAmount);
+
+            return Ok();
         }
 
     }

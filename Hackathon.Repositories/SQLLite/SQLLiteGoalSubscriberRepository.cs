@@ -11,7 +11,14 @@ namespace Hackathon.Repositories.SQLLite
 
         public async Task<bool> Exists(int userId, int userGoalId)
         {
-            return await Context.GoalSubscribers.AnyAsync(gs => gs.UserGoalId == userGoalId && gs.SubscriberId == userId);
+            return await Context.GoalSubscribers
+                .AnyAsync(gs => gs.UserGoalId == userGoalId && gs.SubscriberId == userId);
+        }
+
+        public async Task<GoalSubscriber> Get(int userId, int userGoalId)
+        {
+            return await Context.GoalSubscribers
+                .FirstOrDefaultAsync(gs => gs.SubscriberId == userId && gs.UserGoalId == userGoalId);
         }
     }
 }
