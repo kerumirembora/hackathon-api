@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Hackathon.Model;
 using Hackathon.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +20,15 @@ namespace Hackathon.Repositories.SQLLite
         public async Task<GoalSubscriber> Get(int userId, int userGoalId)
         {
             return await Context.GoalSubscribers
+                .Include(gs=>gs.Subscriber)
                 .FirstOrDefaultAsync(gs => gs.SubscriberId == userId && gs.UserGoalId == userGoalId);
+        }
+
+        public List<GoalSubscriber> GetAllByUserGoal(int userGoalId)
+        {
+            return Context.GoalSubscribers
+                .Include(gs=>gs.Events)
+                .Where(gs => gs.UserGoalId == userGoalId).ToList();
         }
     }
 }

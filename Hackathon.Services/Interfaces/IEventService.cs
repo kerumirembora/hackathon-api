@@ -8,6 +8,6 @@ namespace Hackathon.Services.Interfaces
 {
     public interface IEventService
     {
-        Task AddEventToAllUserSubscribers(int userGoalId);
+        Task AddEventToAllUserSubscribers(int userGoalId, string eventDescription);
     }
 }

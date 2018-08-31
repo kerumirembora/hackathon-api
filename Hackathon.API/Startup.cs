@@ -53,6 +53,7 @@ namespace Hackathon.API
             //Dependency Injection
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IGoalService, GoalService>();
+            services.AddTransient<IEventService, EventService>();
             services.AddTransient<IUserRepository, SQLLiteUserRepository>();
             services.AddTransient<IGoalTypeRepository, SQLLiteGoalTypeRepository>();
             services.AddTransient<INotificationRepository, SQLLiteNotificationRepository>();

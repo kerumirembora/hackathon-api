@@ -37,7 +37,7 @@ namespace Hackathon.API.Controllers
         {
             var updated = await _goalService.UpdateGoalSubscriberAmount(userId, id, input.CompletedAmountIncrement, input.MoneyAmountSaved, input.SavingTransferAmount);
 
-            return Ok();
+            return Ok(updated);
         }
 
     }

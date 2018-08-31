@@ -13,13 +13,15 @@ namespace Hackathon.Services
         IUserGoalRepository _userGoalRepository;
         IEventRepository _eventRepository;
         IGoalSubscriberRepository _goalSubscriberRepository;
+        IEventService _eventService;
 
-        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository, IEventRepository eventRepository, IGoalSubscriberRepository goalSubscriberRepository)
+        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository, IEventRepository eventRepository, IGoalSubscriberRepository goalSubscriberRepository, IEventService eventService)
         {
             _goalTypeRepository = goalTypeRepository;
             _userGoalRepository = userGoalRepository;
             _eventRepository = eventRepository;
             _goalSubscriberRepository = goalSubscriberRepository;
+            _eventService = eventService;
         }
 
         public List<GoalType> GetAllGoalTypes()
@@ -38,7 +40,7 @@ namespace Hackathon.Services
         public async Task<bool> UpdateGoalSubscriberAmount(int userId, int userGoalId, int completedAmountIncrement, int moneyAmountSaved, int? savingTransferAmount)
         {
             var subscriber = await _goalSubscriberRepository.Get(userId, userGoalId);
-            if (subscriber != null)
+            if (subscriber != null && completedAmountIncrement > 0)
             {
                 subscriber.CompletedAmount += completedAmountIncrement;
                 // for now update only completed amount
@@ -46,14 +48,15 @@ namespace Hackathon.Services
                 //subscriber.SavingTransferAmount = savingTransferAmount;
 
                 await _goalSubscriberRepository.Update(subscriber.Id, subscriber);
-
+                string eventMessage = $"{subscriber.Subscriber.Name} increased goal by {completedAmountIncrement}";
+                await _eventService.AddEventToAllUserSubscribers(subscriber.UserGoalId, eventMessage);
                 return true;
             }
             else
             {
                 return false;
             }
-            
+
         }
 
     }
