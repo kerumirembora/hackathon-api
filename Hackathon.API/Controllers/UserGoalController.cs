@@ -32,10 +32,10 @@ namespace Hackathon.API.Controllers
         /// Updates User Goal Amount
         /// </summary>
         /// <returns>List of Goal Types</returns>
-        [HttpPost("{id}/subscriber/{subscriberId}")]
-        public async Task<ActionResult<bool>> UpdateUserGoalAmount(int id, int subscriberId, [FromBody] UpdateGoalSubscriberDetailsInputDto input)
+        [HttpPost("{id}/subscriber/{userId}")]
+        public async Task<ActionResult<bool>> UpdateUserGoalAmount(int id, int userId, [FromBody] UpdateGoalSubscriberDetailsInputDto input)
         {
-            var updated = await _goalService.UpdateGoalSubscriberAmount(subscriberId, id, input.CompletedAmountIncrement, input.MoneyAmountSaved, input.SavingTransferAmount);
+            var updated = await _goalService.UpdateGoalSubscriberAmount(userId, id, input.CompletedAmountIncrement, input.MoneyAmountSaved, input.SavingTransferAmount);
 
             return Ok();
         }
