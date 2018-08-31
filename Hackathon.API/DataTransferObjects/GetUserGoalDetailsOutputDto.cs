@@ -14,14 +14,14 @@ namespace Hackathon.API.DataTransferObjects
         public DateTime DeadlineDate { get; set; }
         public int AdministrationUserId { get; set; }
         public GoalTypeOutputDto GoalType { get; set; }
-        public List<UserOutputDto> ParticipatingUsers { get; set; }
+        public List<SubscriberOutputDto> ParticipatingUsers { get; set; }
         public List<EventOutputDto> LoggedUserEvents { get; set; }
         public List<MetricOutputDto> Metrics { get; set; }
 
 
         public GetUserGoalDetailsOutputDto()
         {
-            ParticipatingUsers = new List<UserOutputDto>();
+            ParticipatingUsers = new List<SubscriberOutputDto>();
             LoggedUserEvents = new List<EventOutputDto>();
             Metrics = new List<MetricOutputDto>();
         }

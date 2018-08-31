@@ -23,13 +23,14 @@ namespace Hackathon.API.Mappers
                 Id = input.UserGoal.Id,
                 Name = input.UserGoal.Name,
                 Unit = input.UserGoal.Unit,
-                ParticipatingUsers = input.UserGoal.Subscribers.Select(u => new UserOutputDto
+                ParticipatingUsers = input.UserGoal.Subscribers.Select(u => new SubscriberOutputDto
                 {
                     Age = u.Subscriber.Age,
                     Email = u.Subscriber.Email,
                     Id = u.Subscriber.Id,
                     Name = u.Subscriber.Name,
-                    UserName = u.Subscriber.UserName
+                    UserName = u.Subscriber.UserName,
+                    CompletedAmount = u.CompletedAmount
                 }).ToList(),
                 LoggedUserEvents = input.LoggedUserEvents.Select(e => new EventOutputDto
                 {
