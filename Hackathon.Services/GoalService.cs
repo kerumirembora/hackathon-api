@@ -14,14 +14,16 @@ namespace Hackathon.Services
         IEventRepository _eventRepository;
         IGoalSubscriberRepository _goalSubscriberRepository;
         IEventService _eventService;
+        IBankingService _bankingService;
 
-        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository, IEventRepository eventRepository, IGoalSubscriberRepository goalSubscriberRepository, IEventService eventService)
+        public GoalService(IGoalTypeRepository goalTypeRepository, IUserGoalRepository userGoalRepository, IEventRepository eventRepository, IGoalSubscriberRepository goalSubscriberRepository, IEventService eventService, IBankingService bankingService)
         {
             _goalTypeRepository = goalTypeRepository;
             _userGoalRepository = userGoalRepository;
             _eventRepository = eventRepository;
             _goalSubscriberRepository = goalSubscriberRepository;
             _eventService = eventService;
+            _bankingService = bankingService;
         }
 
         public List<GoalType> GetAllGoalTypes()
@@ -50,6 +52,9 @@ namespace Hackathon.Services
                 await _goalSubscriberRepository.Update(subscriber.Id, subscriber);
                 string eventMessage = $"{subscriber.Subscriber.Name} increased goal by {completedAmountIncrement}";
                 await _eventService.AddEventToAllUserSubscribers(subscriber.UserGoalId, eventMessage);
+
+                await _bankingService.TransferToSavingsAccount(userId);
+
                 return true;
             }
             else

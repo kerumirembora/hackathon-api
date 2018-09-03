@@ -54,6 +54,7 @@ namespace Hackathon.API
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IGoalService, GoalService>();
             services.AddTransient<IEventService, EventService>();
+            services.AddTransient<IBankingService, BankingService>();
             services.AddTransient<IUserRepository, SQLLiteUserRepository>();
             services.AddTransient<IGoalTypeRepository, SQLLiteGoalTypeRepository>();
             services.AddTransient<INotificationRepository, SQLLiteNotificationRepository>();

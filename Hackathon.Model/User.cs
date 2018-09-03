@@ -12,6 +12,9 @@ namespace Hackathon.Model
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
+        public int SbankenCustomerId { get; set; }
+        public string OriginDepositAccountId { get; set; }
+        public string DestinationSavingsAccountId { get; set; }
         public List<UserGoal> DefinedGoals { get; set; }
         public List<GoalSubscriber> SubscribedGoals { get; set; }
         public List<Notification> Notifications { get; set; }
