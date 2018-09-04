@@ -53,7 +53,10 @@ namespace Hackathon.Services
                 string eventMessage = $"{subscriber.Subscriber.Name} increased goal by {completedAmountIncrement}";
                 await _eventService.AddEventToAllUserSubscribers(subscriber.UserGoalId, eventMessage);
 
-                await _bankingService.TransferToSavingsAccount(userId);
+                if (subscriber.SavingTransferAmount.HasValue)
+                {
+                    await _bankingService.TransferToSavingsAccount(userId, subscriber.SavingTransferAmount.Value);
+                }
 
                 return true;
             }

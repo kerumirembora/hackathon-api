@@ -73,6 +73,7 @@ namespace Hackathon.API.Controllers
         /// Subscribes/adds/invites a user to a user goal
         /// </summary>
         /// <param name="input">Data needed to commit the request</param>
+		/// <param name="userGoalId"></param>
         /// <returns>Subscriber id</returns>
         [HttpPut("{userId}/usergoal/{userGoalId}/subscriber")]
         public async Task<ActionResult<SubscribeUserGoalOutputDto>> SubscribeUserGoal([FromBody] SubscribeUserGoalInputDto input, [FromRoute] int userGoalId)

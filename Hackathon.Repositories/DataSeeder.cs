@@ -1,8 +1,6 @@
 ﻿using Hackathon.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hackathon.Repositories
 {
@@ -11,8 +9,8 @@ namespace Hackathon.Repositories
         public static void SeedUsers(ModelBuilder builder)
         {
             builder.Entity<User>().HasData(
-                new User { Id = 1, Age = 32, Name = "John Doe", UserName = "JohnDoe", Email = "johndoe@gmail.com"},
-                new User { Id = 2, Age = 45, Name = "Anna Doe", UserName = "AnnaDoe", Email = "annadoe@outlook.com" },
+                new User { Id = 1, Age = 32, Name = "John Doe", UserName = "JohnDoe", Email = "johndoe@gmail.com", SbankenCustomerId = 10128512336, OriginDepositAccountId = "BE674A52B05850EC1E9E7EBBEB75BC45", DestinationSavingsAccountId = "88E0F99D3E11010C971AA1B9127D2E4E" },
+                new User { Id = 2, Age = 45, Name = "Anna Doe", UserName = "AnnaDoe", Email = "annadoe@outlook.com", SbankenCustomerId = 14093623453, OriginDepositAccountId= "E7963591FDA781A1912083390CCF6F3A", DestinationSavingsAccountId = "2A2B1758EDAB9101D744F7A777EC33D8" },
                 new User { Id = 3, Age = 28, Name = "Jimmy Chamberlin", UserName = "Jimmy", Email = "jimmy@gmail.com" },
                 new User { Id = 5, Age = 55, Name = "Dominic Howard", UserName = "Dominic", Email = "dominic@yahoo.com" }
             );

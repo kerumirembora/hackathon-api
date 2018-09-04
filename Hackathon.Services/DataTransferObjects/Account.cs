@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hackathon.Model
+namespace Hackathon.Services.DataTransferObjects
 {
     public class Account
     {
         public string AccountId { get; set; }
-        // add additional fields as needed to fully describe the account structure. See: https://api.sbanken.no/Bank/swagger
+        public decimal Available { get; set; }
+        public decimal Balance { get; set; }
 
     }
 }

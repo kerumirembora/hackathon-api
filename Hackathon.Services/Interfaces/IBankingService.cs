@@ -8,7 +8,6 @@ namespace Hackathon.Services.Interfaces
 {
     public interface IBankingService
     {
-        Task TransferToSavingsAccount(int userId);
-        Task<AccountsList> GetAccounts(int userId);
+        Task<bool> TransferToSavingsAccount(int userId, int transferAmount);
     }
 }

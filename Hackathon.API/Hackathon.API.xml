@@ -41,6 +41,7 @@
             Subscribes/adds/invites a user to a user goal
             </summary>
             <param name="input">Data needed to commit the request</param>
+            <param name="userGoalId"></param>
             <returns>Subscriber id</returns>
         </member>
         <member name="M:Hackathon.API.Controllers.UserController.GetUserNotifications(System.Int32)">

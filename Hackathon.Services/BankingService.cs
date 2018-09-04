@@ -1,5 +1,6 @@
 ﻿using Hackathon.Model;
 using Hackathon.Repositories.Interfaces;
+using Hackathon.Services.DataTransferObjects;
 using Hackathon.Services.Interfaces;
 using IdentityModel.Client;
 using Newtonsoft.Json;
@@ -7,56 +8,83 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Hackathon.Services
 {
     public class BankingService : IBankingService
     {
-        IEventRepository _eventRepository;
-        IGoalSubscriberRepository _goalSubscriberRepository;
+        private readonly IUserRepository _userRepository;
 
         private string _clientId = "Sandman";
         private string _secret = "NYqAmBKxzJwQmXuxMX3Fc09qh54e7yUmBeIBJjjku-AFwej4Btahljaqhl44UVdp";
-        private string _customerId = "24087123452";
         private string _discoveryEndpoint = "https://api-sbx.sbanken.no/identityserver/";
         private string _apiBaseAddress = "https://api-sbx.sbanken.no";
         private string _bankBasePath = "/bank";
-        private string _customersBasePath = "/customers";
-        
-        private readonly HttpClient _client;
 
-        public BankingService(IEventRepository eventRepository, IGoalSubscriberRepository goalSubscriberRepository)
+        private HttpClient _httpClient;
+
+        public BankingService(IUserRepository userRepository)
         {
-            _eventRepository = eventRepository;
-            _goalSubscriberRepository = goalSubscriberRepository;
-            _client = GetHttpClient().GetAwaiter().GetResult();
+            _userRepository = userRepository;
         }
 
-        public async Task TransferToSavingsAccount(int userId)
+        public async Task<bool> TransferToSavingsAccount(int userId, int transferAmount)
         {
-            var accountsList = await GetAccounts(userId);
+            var user = await _userRepository.Get(userId);
+            _httpClient = GetHttpClient(user.SbankenCustomerId).GetAwaiter().GetResult();
+            var isTransferValid = await ValidateTransfer(user.OriginDepositAccountId, user.DestinationSavingsAccountId, transferAmount);
+            if (!isTransferValid)
+                return false;
+
+            var isTransferExecuted = await ExecuteTransfer(user.OriginDepositAccountId, user.DestinationSavingsAccountId, transferAmount);
+
+            return isTransferExecuted;
         }
 
-        public async Task<AccountsList> GetAccounts(int userId)
+        private async Task<bool> ExecuteTransfer(string originAccountId, string destinationAccountId, int transferAmount)
         {
-            // The application retrieves the customer's information.
-            var customerResponse = await _client.GetAsync($"{_customersBasePath}/api/v1/Customers");
-            var customerResult = await customerResponse.Content.ReadAsStringAsync();
+            string jsonString = JsonConvert.SerializeObject(new Transfer
+            {
+                Amount = transferAmount,
+                FromAccountId = originAccountId,
+                ToAccountId = destinationAccountId,
+                Message = "Good boy"
+            });
+            var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-            // The application retrieves the customer's accounts.
-            var accountResponse = await _client.GetAsync($"{_bankBasePath}/api/v1/Accounts");
+            var transferResponse = await _httpClient.PostAsync($"{_bankBasePath}/api/v1/Transfers", stringContent);
+
+            transferResponse.EnsureSuccessStatusCode();
+
+            return true;
+        }
+
+        private async Task<bool> ValidateTransfer(string originAccountId, string destinationAccountId, int transferAmount)
+        {
+            var accountResponse = await _httpClient.GetAsync($"{_bankBasePath}/api/v1/Accounts");
             var accountResult = await accountResponse.Content.ReadAsStringAsync();
             var accountsList = JsonConvert.DeserializeObject<AccountsList>(accountResult);
+            // check if both the saving and deposit accounts exist
+            // TO DO: improve this DUMB query
+            var bothAccountsExist = accountsList.Items.Any(a => a.AccountId.Equals(originAccountId)) &&
+                                    accountsList.Items.Any(a => a.AccountId.Equals(destinationAccountId));
+            if (!bothAccountsExist)
+                return false;
 
-            var spesificAccountResponse = await _client.GetAsync($"{_bankBasePath}/api/v1/Accounts/{accountsList.Items[0].AccountId}");
-            var spesificAccountResult = await spesificAccountResponse.Content.ReadAsStringAsync();
+            // check if the deposit account has enough available balance
+            var originAccountResponse = await _httpClient.GetAsync($"{_bankBasePath}/api/v1/Accounts/{originAccountId}");
+            var originAccountResult = await originAccountResponse.Content.ReadAsStringAsync();
+            var originAccount = JsonConvert.DeserializeObject<AccountItem>(originAccountResult);
 
-            return accountsList;
+            if (originAccount.Item.Available <= transferAmount)
+                return false;
 
+            return true;
         }
 
-        private async Task<HttpClient> GetHttpClient()
+        private async Task<HttpClient> GetHttpClient(long customerId)
         {
 
             // First: get the OpenId configuration from Sbanken.
@@ -93,7 +121,7 @@ namespace Hackathon.Services
                 BaseAddress = new Uri(_apiBaseAddress),
                 DefaultRequestHeaders =
                 {
-                    { "customerId", _customerId }
+                    { "customerId", customerId.ToString() }
                 }
             };
 

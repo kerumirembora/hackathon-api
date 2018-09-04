@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hackathon.Model
+namespace Hackathon.Services.DataTransferObjects
 {
     public class AccountsList
     {
